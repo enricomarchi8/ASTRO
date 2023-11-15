@@ -4,7 +4,7 @@ export const sampleProducts:Product[] = [
     {
         name: 'T-Shirt Uomo Astro',
         slug: 'T-Shirt Uomo Astro',
-        image: '../images/string',
+        image: '../images/t-shirt_U_nera',
         categoria: 'Magliette', 
         marca: 'Astro',
         prezzo: 30, 
@@ -16,7 +16,7 @@ export const sampleProducts:Product[] = [
     {
         name: 'T-Shirt Donna Astro',
         slug: 'T-Shirt Donna Astro',
-        image: '../images/string',
+        image: '../images/t-shirt_D_rosa',
         categoria: 'Magliette', 
         marca: 'Astro',
         prezzo: 29.99, 

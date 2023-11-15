@@ -1,5 +1,5 @@
 import { Col, Container, Nav, Navbar, Row } from 'react-bootstrap'
-import './App.css'
+
 import { sampleProducts } from './data'
 
 function App() {
@@ -12,10 +12,10 @@ function App() {
             <Navbar.Brand>ASTRO</Navbar.Brand>
           </Container>
           <Nav>
-            <a href="/cart" className="nav-link">Cart</a>
-            <a href="/signin" className='nav-link'>Sign In</a>
+            <a href="/blog" className="nav-link">Blog</a>
             <a href="/news" className='nav-link'>News</a>
-            <a href="/blog" className='nav-link'>Blog In</a>
+            <a href="/signin" className='nav-link'>Sign In</a>
+            <a href="/cart" className='nav-link'>Cart</a>
           </Nav>
         </Navbar>
       </header>
