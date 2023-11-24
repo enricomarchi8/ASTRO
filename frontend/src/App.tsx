@@ -1,41 +1,34 @@
-import { Col, Container, Nav, Navbar, Row } from 'react-bootstrap'
-
-import { sampleProducts } from './data'
+import { Container, Nav, Navbar } from 'react-bootstrap'
+import { Bag, Cart, PersonCircle, RocketTakeoff } from 'react-bootstrap-icons'
+import { Outlet } from 'react-router-dom'
 
 function App() {
 
   return (
-    <div className='d-flex flex-cloumn vh-100'>
+    <div className='flex-cloumn vh-100'>
       <header>
         <Navbar bg="dark" variant="dark" expand="lg">
-          <Container>
-            <Navbar.Brand>ASTRO</Navbar.Brand>
+          <Container className="ms-5">
+            <a className="navbar-brand" href="/"> 
+              ASTRO <RocketTakeoff /> 
+            </a>
           </Container>
-          <Nav>
+          <Nav className="me-5">
             <a href="/blog" className="nav-link">Blog</a>
-            <a href="/news" className='nav-link'>News</a>
-            <a href="/signin" className='nav-link'>Sign In</a>
-            <a href="/cart" className='nav-link'>Cart</a>
+            <a href="/shop" className='nav-link'>Shop</a>
+            <a href="/cart" className='nav-link'> <Bag /> </a>
+            <a href="/account" className='nav-link'> <PersonCircle /> </a>
           </Nav>
         </Navbar>
       </header>
       <main>
         <Container className='mt-3'>
-          <Row>
-          {
-          sampleProducts.map(product => (
-          <Col key={product.slug} sm={6} md={4} lg={3}>
-            <img src={product.image} alt={product.name} className="product-image"/>
-            <h2>{product.name}</h2>
-            <p>€{product.prezzo}</p>
-          </Col>
-            ))}
-          </Row>
+          <Outlet />
         </Container>        
       </main>
       <footer>
         <div className='text-center'>
-          Qui va il footer
+          Footer
         </div>
       </footer>
     </div>
