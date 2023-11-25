@@ -15,6 +15,10 @@ import Shop from './pages/Shop'
 import Product from './pages/Product'
 import Cart from './pages/Cart'
 import Account from './pages/Account'
+import axios from 'axios'
+
+axios.defaults.baseURL = 
+process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : '/'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
