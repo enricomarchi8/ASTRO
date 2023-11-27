@@ -1,5 +1,5 @@
 import { Container, Nav, Navbar } from 'react-bootstrap'
-import { Bag, Cart, PersonCircle, RocketTakeoff } from 'react-bootstrap-icons'
+import { Bag, PersonCircle, RocketTakeoff } from 'react-bootstrap-icons'
 import { Outlet } from 'react-router-dom'
 
 function App() {
