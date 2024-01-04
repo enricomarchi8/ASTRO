@@ -6,7 +6,7 @@ export class Product {
     public _id!: string
 
     @prop({ required: true })
-    public name!: string
+    public nome!: string
 
     @prop({ required: true })
     public slug!: string
@@ -21,7 +21,7 @@ export class Product {
     public categoria!: string
 
     @prop({ required: true })
-    public descrizone!: string
+    public descrizione!: string
 
     @prop({ required: true, default: 0 })
     public prezzo!: number

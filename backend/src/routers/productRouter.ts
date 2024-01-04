@@ -19,7 +19,7 @@ productRouter.get(
         if (product) {
             res.json(product)
         } else {
-            res.status(404).json({ message: 'Prodotto Non Trovato'})
+            res.status(404).json({ messaggio: 'Prodotto Non Trovato'})
         }
     })
 )
