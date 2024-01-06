@@ -1,7 +1,10 @@
 import { useContext, useEffect } from 'react'
 import { Badge, Button, Container, Nav, Navbar } from 'react-bootstrap'
-import { Bag, PersonCircle, RocketTakeoff } from 'react-bootstrap-icons'
+import { Bag, PersonCircle } from 'react-bootstrap-icons'
 import { Link, Outlet } from 'react-router-dom'
+import { LinkContainer } from 'react-router-bootstrap'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/ReactToastify.css'
 import { Store } from './Store'
 
 function App() {
@@ -21,12 +24,13 @@ function App() {
 
   return (
     <div className='flex-cloumn vh-100'>
+      <ToastContainer position="bottom-center" limit={1} />
       <header>
-        <Navbar bg="dark" variant="dark" expand="lg"> //in caso si voglia rimuovere il lock colore dalla nav rimuovere bg e variant 
+        <Navbar bg="dark" variant="dark" expand="lg"> 
           <Container className="ms-5">
-            <a className="navbar-brand" href="/"> 
-              ASTRO <RocketTakeoff /> 
-            </a>
+            <LinkContainer to="/" className='link-container'>
+              <img src="/public/images/ASTRO_Logo.png" alt='ASTRO_Logo' className='navbar-logo' />
+            </LinkContainer>           
           </Container>
           <Nav className="me-5">
             <a href="/blog" className="nav-link">Blog</a>

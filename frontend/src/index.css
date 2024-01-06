@@ -19,3 +19,11 @@
 img.large {
   max-width: 100%;
 }
+
+.link-container{
+  cursor: pointer;
+}
+
+.navbar-logo {
+  width: 3%;
+}

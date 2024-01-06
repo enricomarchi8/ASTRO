@@ -1,12 +1,15 @@
 import { Helmet } from 'react-helmet-async'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useGetProductDetailsBySlugQuery } from '../hooks/productHooks'
 import LoadingBox from '../components/LoadingBox'
-import { getError } from '../utils'
+import { convertProductToCartItem, getError } from '../utils'
 import { ApiError } from '../types/ApiError'
 import MessageBox from '../components/MessageBox'
 import { Badge, Button, Card, Col, ListGroup, Row } from 'react-bootstrap'
 import Rating from '../components/Rating'
+import { useContext } from 'react'
+import { Store } from '../Store'
+import { toast } from 'react-toastify'
 
 export default function Product() {
     const params = useParams()
@@ -16,6 +19,26 @@ export default function Product() {
       isLoading,
       error,
     } = useGetProductDetailsBySlugQuery(slug!)
+
+    const { state, dispatch } = useContext(Store)
+    const { cart } = state
+
+    const navigate = useNavigate()
+
+    const addToCartHandler = () => {
+        const existItem = cart.cartItems.find((x) => x._id === product!._id)
+        const quantity = existItem ? existItem.quantity + 1 : 1
+        if (product!.disponibilita < quantity) {
+            toast.warn('Mi dispiace. Il prodotto non è disponibile')
+            return
+        }
+        dispatch({
+            type: 'CART_ADD_ITEM',
+            payload: { ...convertProductToCartItem(product!), quantity},
+        })
+        toast.success('Prodotto aggiunto al carrello')
+        navigate('/cart')
+    }
 
     return isLoading ? (
       <LoadingBox /> 
@@ -77,7 +100,7 @@ export default function Product() {
                             {product.disponibilita > 0 &&(
                                 <ListGroup.Item>
                                     <div className="d-grid">
-                                        <Button variant="primary">Aggiungi al carrello</Button>
+                                        <Button onClick={addToCartHandler} variant="primary">Aggiungi al carrello</Button>
                                     </div>
                                 </ListGroup.Item>
                             )}
