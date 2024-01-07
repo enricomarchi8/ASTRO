@@ -29,7 +29,7 @@ function App() {
         <Navbar bg="dark" variant="dark" expand="lg"> 
           <Container className="ms-5">
             <LinkContainer to="/" className='link-container'>
-              <img src="/public/images/ASTRO_Logo.png" alt='ASTRO_Logo' className='navbar-logo' />
+              <img src="/images/ASTRO_Logo.png" alt='ASTRO_Logo' className='navbar-logo' />
             </LinkContainer>           
           </Container>
           <Nav className="me-5">
