@@ -15,10 +15,10 @@ import Blog from './pages/Blog'
 import Shop from './pages/Shop'
 import Product from './pages/Product'
 import Cart from './pages/Cart'
-import Account from './pages/Account'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { StoreProvider } from './Store'
+import Signin from './pages/Signin'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,7 +28,7 @@ const router = createBrowserRouter(
       <Route path="shop" element={<Shop />} />
       <Route path="product/:slug" element={<Product />} />
       <Route path="cart" element={<Cart />} />
-      <Route path="account" element={<Account />} />
+      <Route path="signin" element={<Signin />} />
     </Route>
   )
 )

@@ -31,3 +31,7 @@ img.thumbnail {
 .navbar-logo {
   width: 3%;
 }
+
+.small-container {
+  max-width: 600px;
+}

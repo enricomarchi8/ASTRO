@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react'
-import { Badge, Button, Container, Nav, Navbar } from 'react-bootstrap'
+import { Badge, Button, Container, Nav, NavDropdown, Navbar } from 'react-bootstrap'
 import { Bag, PersonCircle } from 'react-bootstrap-icons'
 import { Link, Outlet } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
@@ -10,7 +10,7 @@ import { Store } from './Store'
 function App() {
 
   const { 
-   state:{ mode, cart },
+   state:{ mode, cart, userInfo },
    dispatch,
    } = useContext(Store)
 
@@ -20,6 +20,15 @@ function App() {
 
   const switchModeHandler = () => {
     dispatch({ type: 'SWITCH_MODE'})
+  }
+
+  const signoutHandler = () => {
+    dispatch({ type: 'USER_SIGNOUT'})
+    localStorage.removeItem('userInfo')
+    localStorage.removeItem('carItems')
+    localStorage.removeItem('shippingAddress')
+    localStorage.removeItem('paymentMethod')
+    window.location.href = '/signin'
   }
 
   return (
@@ -46,7 +55,21 @@ function App() {
             <Button variant={mode} onClick={switchModeHandler}>
               <i className={mode === 'light' ? 'fa fa-sun' : 'fa fa-moon'}></i>
             </Button>
-            <a href="/account" className='nav-link'> <PersonCircle /> </a>
+            {userInfo ? (
+              <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
+                <Link
+                  className='dropdown-item'
+                  to='#signout'
+                  onClick={signoutHandler}
+                >
+                  Esci
+                </Link>
+              </NavDropdown>
+            ): (
+              <Link className='nav-link' to="/signin">
+                  <a href="/signin" className='nav-link'> <PersonCircle /> </a>
+              </Link>
+            )}
           </Nav>
         </Navbar>
       </header>
