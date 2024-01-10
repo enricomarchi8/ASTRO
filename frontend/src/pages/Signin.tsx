@@ -8,7 +8,7 @@ import { toast } from "react-toastify"
 import { Button, Container, Form } from "react-bootstrap"
 import { Helmet } from "react-helmet-async"
 import LoadingBox from "../components/LoadingBox"
-import { Link } from "react-bootstrap-icons"
+import { Link } from "react-router-dom"
 
 export default function Signin() {
     const navigate = useNavigate()
