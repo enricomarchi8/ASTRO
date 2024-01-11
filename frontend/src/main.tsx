@@ -21,6 +21,7 @@ import { StoreProvider } from './Store'
 import Signin from './pages/Signin'
 import Signup from './pages/Signup'
 import Shipping from './pages/Shipping'
+import PaymentMethod from './pages/PaymentMethod'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
       <Route path="signin" element={<Signin />} />
       <Route path="signup" element={<Signup />} />
       <Route path="shipping" element={<Shipping />} />
+      <Route path="payment" element={<PaymentMethod />} />
     </Route>
   )
 )
