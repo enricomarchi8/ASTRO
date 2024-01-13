@@ -5,15 +5,28 @@ import { OrderModel } from '../models/orderModel'
 import { Product } from '../models/productModel'
 export const orderRouter = express.Router()
 
+orderRouter.get( // /api/orders/:id
+    '/:id',
+    isAuth,
+    asyncHandler(async (req: Request, res: Response) => {
+        const order = await OrderModel.findById(req.params.id)
+        if (order) {
+            res.json(order)
+        } else {
+            res.status(404).json({ message: 'Ordine non trovato' })
+        }
+    })
+)
+
 orderRouter.post(
     '/',
     isAuth,  //solo gli utenti verificati possono accedere a questa api quindi necessita di un middleware prima di chiamarla a rispondere alla richiesta
     asyncHandler(async (req: Request, res: Response) => {
         if (req.body.orderItems.length === 0) {
-            res.status(400).send({ message: 'Il carrello è vuoto.' })
+            res.status(400).json({ message: 'Il carrello è vuoto.' })
         } else {
             const createdOrder = await OrderModel.create({
-                orderItems: req.body.orderItems.maps((x: Product) => ({
+                orderItems: req.body.orderItems.map((x: Product) => ({
                     ...x,
                     product: x._id,
                 })),

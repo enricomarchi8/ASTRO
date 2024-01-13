@@ -13,6 +13,7 @@ export type Order = {
     isDelivered: boolean
     deliveredAt: string
     itemsPrice: number
+    shippingPrice: number
     taxPrice: number
     totalPrice: number
 }

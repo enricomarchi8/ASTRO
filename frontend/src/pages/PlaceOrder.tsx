@@ -11,11 +11,10 @@ import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
 import LoadingBox from "../components/LoadingBox";
 
 export default function PlaceOrder() {
-
     const navigate = useNavigate()
 
     const { state, dispatch } = useContext(Store)
-    const { cart } = state
+    const { cart, userInfo } = state
 
     const round2 = (num: number) => Math.round(num * 100 + Number.EPSILON) / 100 //123.2345 => 123.23
 
@@ -38,7 +37,6 @@ export default function PlaceOrder() {
                 shippingPrice: cart.shippingPrice,
                 taxPrice: cart.taxPrice,
                 totalPrice: cart.totalPrice,
-
             })
             dispatch({ type: 'CART_CLEAR' })
             localStorage.removeItem('cartItems')
@@ -68,36 +66,49 @@ export default function PlaceOrder() {
                             <Card.Title>Spedizione</Card.Title>
                             <Card.Text>
                                 <strong>Nome:</strong> {cart.shippingAddress.fullName} <br />
-                                <strong>Indirizzo</strong> {cart.shippingAddress.address},
+                                <strong>Indirizzo:</strong> {cart.shippingAddress.address},
                                 {cart.shippingAddress.city}, {cart.shippingAddress.postalCode},
                                 {cart.shippingAddress.country}
                             </Card.Text>
                             <Link to="/shipping">Modifica</Link>
                         </Card.Body>
                     </Card>
+
                     <Card className="mb-3">
-                        <Card.Title>Articoli</Card.Title>
-                        <ListGroup variant="flush">
-                            {cart.cartItems.map((item) => (
-                                <ListGroup.Item key={item._id}>
-                                    <Row className="align-items-center">
-                                        <Col md={6}>
-                                            <img
-                                                src={item.image}
-                                                alt={item.name}
-                                                className="img-fluid rounded thumbnail"
-                                            ></img>{' '}
-                                            <Link to={`/product/${item.slug}`}>{item.name}</Link>
-                                        </Col>
-                                        <Col md={3}>
-                                            <span>{item.quantity}</span>
-                                        </Col>
-                                        <Col md={3}>€{item.price}</Col>
-                                    </Row>
-                            </ListGroup.Item>
-                            ))}
-                        </ListGroup>
-                        <Link to="/cart">Modifica</Link>
+                        <Card.Body>
+                            <Card.Title>Pagamento</Card.Title>
+                            <Card.Text>
+                                <strong>Metodo di pagamento:</strong> {cart.paymentMethod}
+                            </Card.Text>
+                            <Link to="/payment">Modifica</Link>
+                        </Card.Body>
+                    </Card>
+
+                    <Card className="mb-3">
+                        <Card.Body>
+                            <Card.Title>Articoli</Card.Title>
+                            <ListGroup variant="flush">
+                                {cart.cartItems.map((item) => (
+                                    <ListGroup.Item key={item._id}>
+                                        <Row className="align-items-center">
+                                            <Col md={6}>
+                                                <img
+                                                    src={item.image}
+                                                    alt={item.name}
+                                                    className="img-fluid rounded thumbnail"
+                                                ></img>{' '}
+                                                <Link to={`/product/${item.slug}`}>{item.name}</Link>
+                                            </Col>
+                                            <Col md={3}>
+                                                <span>{item.quantity}</span>
+                                            </Col>
+                                            <Col md={3}>€{item.price}</Col>
+                                        </Row>
+                                </ListGroup.Item>
+                                ))}
+                            </ListGroup>
+                            <Link to="/cart">Modifica</Link>
+                        </Card.Body>
                     </Card>
                 </Col>
                 <Col md={4}>
@@ -125,20 +136,26 @@ export default function PlaceOrder() {
                                 </ListGroup.Item>
                                 <ListGroup.Item>
                                     <Row>
-                                        <Col>Totale Ordine</Col>
-                                        <Col>€{cart.totalPrice.toFixed(2)}</Col>
+                                        <Col>
+                                            <strong>Totale Ordine</strong>
+                                        </Col>
+                                        <Col>
+                                            <strong>€{cart.totalPrice.toFixed(2)}</strong>
+                                        </Col>
                                     </Row>
                                 </ListGroup.Item>
-                                <div className="d-grid">
-                                    <Button
-                                        type="button"
-                                        onClick={placeOrderHandler}
-                                        disabled={cart.cartItems.length === 0 || isPending}
-                                    >
-                                        Conferma Ordine
-                                    </Button>
-                                    {isPending && <LoadingBox></LoadingBox>}
-                                </div>
+                                <ListGroup.Item>
+                                    <div className="d-grid">
+                                        <Button
+                                            type="button"
+                                            onClick={placeOrderHandler}
+                                            disabled={cart.cartItems.length === 0 || isPending}
+                                        >
+                                            Conferma Ordine
+                                        </Button>
+                                        {isPending && <LoadingBox></LoadingBox>}
+                                    </div>
+                                </ListGroup.Item>
                             </ListGroup>
                         </Card.Body>
                     </Card>
