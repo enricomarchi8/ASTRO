@@ -22,6 +22,8 @@ import Signin from './pages/Signin'
 import Signup from './pages/Signup'
 import Shipping from './pages/Shipping'
 import PaymentMethod from './pages/PaymentMethod'
+import ProtectedRoute from './components/ProtectedRoute'
+import PlaceOrder from './pages/PlaceOrder'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,9 +34,12 @@ const router = createBrowserRouter(
       <Route path="product/:slug" element={<Product />} />
       <Route path="cart" element={<Cart />} />
       <Route path="signin" element={<Signin />} />
-      <Route path="signup" element={<Signup />} />
-      <Route path="shipping" element={<Shipping />} />
-      <Route path="payment" element={<PaymentMethod />} />
+      <Route path="signup" element={<Signup />} />    
+      <Route path="" element={<ProtectedRoute />}>
+        <Route path="shipping" element={<Shipping />} />
+        <Route path="payment" element={<PaymentMethod />} />
+        <Route path="placeorder" element={<PlaceOrder />} />
+      </Route>  
     </Route>
   )
 )
