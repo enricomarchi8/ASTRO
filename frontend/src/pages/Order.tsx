@@ -1,13 +1,15 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Store } from "../Store";
 import { useParams, Link } from "react-router-dom";
-import { useGetOrderDetailsQuery } from "../hooks/orderHooks";
+import { useGetOrderDetailsQuery, useGetPaypalClientIdQuery, usePayOrderMutation } from "../hooks/orderHooks";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { getError } from "../utils";
 import { ApiError } from "../types/ApiError";
 import { Helmet } from "react-helmet-async";
-import { Card, Col, ListGroup, Row } from "react-bootstrap";
+import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
+import { toast } from "react-toastify";
+import { PayPalButtons, PayPalButtonsComponentProps, SCRIPT_LOADING_STATE, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 
 export default function Order() {
     const { state } = useContext(Store)
@@ -16,9 +18,69 @@ export default function Order() {
     const params = useParams()
     const { id: orderId } = params
 
-    const { data: order, isPending, error } = useGetOrderDetailsQuery(orderId!)
+    const { data: order, isLoading, error, refetch } = useGetOrderDetailsQuery(orderId!)
 
-    return isPending ? (
+    const { mutateAsync: payOrder, isPending: loadingPay } = usePayOrderMutation()
+
+    const testPayHandler = async () => {
+        await payOrder({ orderId: orderId! })
+        refetch()
+        toast.success('Ordine pagato')
+    }
+
+    const [{ isPending, isRejected }, paypalDispatch] = usePayPalScriptReducer()
+
+    const { data: paypalConfig } = useGetPaypalClientIdQuery()
+
+    useEffect(() => {
+        if(paypalConfig && paypalConfig.clientId) {
+            const loadPaypalScript = async () => {
+                paypalDispatch({
+                    type: 'resetOptions',
+                    value: {
+                        'clientId': paypalConfig!.clientId,
+                        currency: 'EUR',
+                    },
+                })
+                paypalDispatch({
+                    type: 'setLoadingStatus',
+                    value: SCRIPT_LOADING_STATE.PENDING,
+                })
+            }
+            loadPaypalScript()
+        }
+    }, [paypalConfig])
+
+    const paypalbuttonTransactionProps: PayPalButtonsComponentProps = {
+        style: { layout: 'vertical' },
+        async createOrder(_data, actions) {
+            const orderID = await actions.order.create({
+                purchase_units: [
+                    {
+                        amount: {
+                            value: order!.totalPrice.toString(),
+                        },
+                    },
+                ],
+            });
+            return orderID;
+        },
+        async onApprove(_data, actions) {
+            const details = await actions.order!.capture();
+            try {
+                await payOrder({ orderId: orderId!, ...details });
+                refetch();
+                toast.success('Ordine pagato');
+            } catch (err) {
+                toast.error(getError(err as ApiError));
+            }
+        },
+        onError: (err) => {
+            toast.error(getError(err as ApiError))
+        },
+    }
+
+    return isLoading ? (
         <LoadingBox></LoadingBox>
     ) : error ? (
         <MessageBox variant="danger">{getError(error as unknown as ApiError)}</MessageBox>
@@ -122,6 +184,25 @@ export default function Order() {
                                         <Col>€{order.totalPrice.toFixed(2)}</Col>
                                     </Row>
                                 </ListGroup.Item>
+                                {!order.isPaid && (
+                                    <ListGroup.Item>
+                                        {isPending ? (
+                                            <LoadingBox />
+                                        ) : isRejected ? (
+                                            <MessageBox variant="danger">
+                                                Errore nella connessione con PayPal
+                                            </MessageBox>
+                                        ) : (
+                                            <div>
+                                                <PayPalButtons
+                                                    {...paypalbuttonTransactionProps}
+                                                ></PayPalButtons>
+                                                <Button onClick={testPayHandler}>Paga (test)</Button>
+                                            </div>
+                                        )}
+                                        {loadingPay && <LoadingBox></LoadingBox>}
+                                    </ListGroup.Item>
+                                )}
                             </ListGroup>
                         </Card.Body>
                     </Card>
