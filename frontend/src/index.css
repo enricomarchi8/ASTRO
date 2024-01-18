@@ -44,3 +44,80 @@ img.thumbnail {
   border-bottom: 0.2rem solid #be2ed6;
   color: #be2ed6;
 }
+
+.dropdown-menu[data-bs-popper] {
+  left: auto;
+  right: 0;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+a.header-link,
+.header-link > a {
+  border: 1px rgb(33, 37, 41) solid;
+  border-radius: 2px;
+  color: white !important;
+  font-weight: bold;
+}
+
+a.header-link:hover,
+.header-link > a:hover {
+  color: white;
+  border: 1px white solid;
+}
+
+.header .dropdown-menu,
+.header .dropdown-item {
+  color: black !important;
+  background-color: white;
+}
+.header .dropdown-item a:hover {
+  border: 1px rgb(33, 37, 41) solid;
+}
+
+#icona-home {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+}
+
+
+.navbar .nav-link:hover {
+  background: linear-gradient(to top, #be2ed6, transparent);
+}
+#responsive-navbar-nav {
+  display: flex;
+  justify-content: center;
+  margin-right: 500px;
+}
+
+.cart {
+  position: relative;
+}
+.badge {
+  position: absolute;
+  top: 7px;
+  right: 2px;
+  width: 15px;
+  height: 15px;
+  z-index: 1000;
+  color:#fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 8px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
+  background-color: #be2ed6;
+}

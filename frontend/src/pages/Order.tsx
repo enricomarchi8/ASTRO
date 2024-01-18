@@ -197,10 +197,11 @@ export default function Order() {
                                                 <PayPalButtons
                                                     {...paypalbuttonTransactionProps}
                                                 ></PayPalButtons>
-                                                <Button onClick={testPayHandler}>Paga (test)</Button>
+                                                
                                             </div>
                                         )}
                                         {loadingPay && <LoadingBox></LoadingBox>}
+                                        <Button onClick={testPayHandler}>Paga (test)</Button>
                                     </ListGroup.Item>
                                 )}
                             </ListGroup>

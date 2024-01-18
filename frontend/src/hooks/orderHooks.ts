@@ -15,21 +15,6 @@ useQuery({
         (await apiClient.get<{ clientId: string }>(`/api/keys/paypal`)).data,
 })
 
-//non so se servono duplicate anche per gli altri pagamenti
-/*export const useGetGooglepayClientIdQuery = () =>
-useQuery({
-    queryKey: ['googlepay-clientId'],
-    queryFn: async () =>
-        (await apiClient.get<{ clientId: string }>(`/api/keys/googlepay`)).data,
-})
-
-export const useGetApplepayClientIdQuery = () =>
-useQuery({
-    queryKey: ['applepay-clientId'],
-    queryFn: async () =>
-        (await apiClient.get<{ clientId: string }>(`/api/keys/applepay`)).data,
-})*/
-
 export const usePayOrderMutation = () => useMutation({
     mutationFn: async (details: { orderId: string }) =>
     (
@@ -57,3 +42,10 @@ export const useCreateOrderMutation = () => useMutation({
             )
         ).data,
 })
+
+export const useGetOrderHistoryQuery = () => 
+    useQuery({
+        queryKey: ['order-history'],
+        queryFn: async () =>
+            (await apiClient.get<Order[]>(`/api/orders/mine`)).data,
+    })
