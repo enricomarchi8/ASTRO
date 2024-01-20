@@ -26,7 +26,7 @@ const app = express()
 app.use(
     cors({
       credentials: true,
-      origin: ['http://localhost:5173', 'http://www.paypal.com'],
+      origin: ['http://localhost:5173'],
     })
   )
 
