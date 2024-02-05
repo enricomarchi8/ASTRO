@@ -17,7 +17,7 @@
 }
 
 img.large {
-  max-width: 100%;
+  max-width: 50%;
 }
 
 img.thumbnail {
@@ -100,7 +100,7 @@ a.header-link:hover,
 .cart {
   position: relative;
 }
-.badge {
+.badge-cart {
   position: absolute;
   top: 7px;
   right: 2px;
@@ -114,10 +114,112 @@ a.header-link:hover,
   font-size: 8px;
 }
 
+.card-product {
+  width: 246px;
+  height: 411px;
+}
+.card-img-top {
+  width: 244px;
+  height: 244px;
+  object-fit: scale-down;
+}
+
+.card-body-product {
+  width: 244px;
+  height: 165px;
+}
+
+.card {
+  width: fit-content;
+  height: fit-content;
+}
+
+.product-name {
+  font-size: 24px;
+}
+
+.image-product-column {
+  width: 50%;
+  height: 70%;
+}
+.image-product-column > * {
+  width: 100%;
+  align-items: end;
+}
+
+.col-product {
+  align-content: flex-start;
+  display: flex;
+
+}
+
+.card-cart {
+  width: fit-content;
+
+}
+
+.cart-img {
+  width: 150px;
+  height: 150px;
+  object-fit: scale-down;
+}
+
+.row-cart {
+  align-items: center;
+  white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.row-cart > * {
+  margin: 0 10px;
+}
+
+.col-cart-price {
+  width: fit-content;
+  justify-content: center;
+}
+
+.shop-title {
+  text-align: center;
+  padding: 20px;
+}
+
+.card-checkout {
+  width: 750px;
+  margin-bottom: 16px;
+}
+
+.card-report {
+  width: 320px;
+}
+
+.button-pay {
+  background: #fff;
+  width: 254px;
+  height: 37px;
+  margin-bottom: 9px;
+  
+}
+.button-pay:hover {
+  background-color: #e3e3e3;
+}
+.button-pay:active {
+  background-color: #be2ed6;
+}
+.button-pay .img-pay {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+}
+
 footer {
-  position: fixed;
+  position: flex;
   bottom: 0;
   width: 100%;
+  padding: 20px;
+  margin-top: 20px;
   color: #fff;
   background-color: #be2ed6;
 }

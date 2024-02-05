@@ -41,7 +41,7 @@ export default function Cart() {
   return (
     <div>
       <Helmet>
-        <title>Carrello Acquisti</title>
+        <title>ASTRO-Carrello Acquisti</title>
       </Helmet>
       <h1>Carrello Acquisti</h1>
       <Row>
@@ -54,12 +54,12 @@ export default function Cart() {
                <ListGroup>
                 {cartItems.map((item: CartItem) => (
                   <ListGroupItem key={item._id}>
-                    <Row className="align-items-center">
+                    <Row className="row-cart" /*align-items-center*/ > 
                       <Col md={4}>
                         <img
                           src={item.image}
                           alt={item.name}
-                          className="img-fluid rounded img-thumbnail"
+                          className="cart-img" //img-fluid rounded img-thumbnail
                         ></img>{' '} 
                         <Link to={`/product/${item.slug}`}>{item.name}</Link>
                       </Col>
@@ -84,7 +84,7 @@ export default function Cart() {
                             <i className="fas fa-plus-circle"></i> 
                           </Button>
                       </Col>
-                      <Col md={3}>€{item.price}</Col>
+                      <Col md={3} className="col-cart-price">€{item.price}</Col>
                       <Col md={2}>
                         <Button onClick={()=>removeItemHandler(item)} variant={mode}>
                           <i className="fas fa-trash"></i>
@@ -97,7 +97,7 @@ export default function Cart() {
             )}
         </Col>
       <Col md={4}>
-        <Card>
+        <Card className="card-cart">
           <Card.Body>
             <ListGroup variant="flush">
                 <ListGroup.Item>

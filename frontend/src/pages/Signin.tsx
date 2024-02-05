@@ -48,7 +48,7 @@ export default function Signin() {
     return (
         <Container className="small-container">
             <Helmet>
-                <title>Accedi</title>
+                <title>ASTRO-Accedi</title>
             </Helmet>
             <h1 className="my-3">Accedi</h1>
             <Form onSubmit={submitHandler}>

@@ -45,7 +45,7 @@ function ProductItem({ product }: { product: Product }) {
           rating={product.valutazione}
           numReviews={product.numRecensioni}
         />
-        <Card.Text>${product.prezzo}</Card.Text>
+        <Card.Text>€{product.prezzo}</Card.Text>
         {product.disponibilita === 0 ? (
           <Button variant="light" disabled>
             Non disponibile

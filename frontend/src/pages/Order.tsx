@@ -89,12 +89,12 @@ export default function Order() {
     ) : (
         <div>
             <Helmet>
-                <title>Ordine {orderId}</title>
+                <title>ASTRO-Ordine {orderId}</title>
             </Helmet>
             <h1 className="my-3">Ordine {orderId}</h1>
             <Row>
                 <Col md={8}>
-                   <Card className="mb-3">
+                   <Card className="card-checkout">
                     <Card.Body>
                         <Card.Title>Spedizione</Card.Title>
                         <Card.Text>
@@ -113,7 +113,7 @@ export default function Order() {
                     </Card.Body>
                    </Card>
 
-                   <Card className="mb-3">
+                   <Card className="card-checkout">
                     <Card.Body>
                         <Card.Title>Pagamento</Card.Title>
                         <Card.Text>
@@ -129,7 +129,7 @@ export default function Order() {
                     </Card.Body>
                    </Card>
 
-                   <Card className="mb-3">
+                   <Card className="card-checkout">
                         <Card.Body>
                             <Card.Title>Articoli</Card.Title>
                             <ListGroup variant="flush">
@@ -156,7 +156,7 @@ export default function Order() {
                    </Card>
                 </Col>
                 <Col md={4}>
-                    <Card className="mb-3">
+                    <Card className="card-report">
                         <Card.Body>
                             <Card.Title>Riepilogo Ordine</Card.Title>
                             <ListGroup variant="flush">
@@ -194,6 +194,16 @@ export default function Order() {
                                             </MessageBox>
                                         ) : (
                                             <div>
+                                                <Button 
+                                                    className="button-pay"
+                                                    onClick={testPayHandler}>
+                                                        <img className="img-pay" src="/images/Google_Pay_Logo.png" alt="Google_Pay_Logo" ></img>
+                                                </Button>
+                                                <Button 
+                                                    className="button-pay"
+                                                    onClick={testPayHandler}>
+                                                        <img className="img-pay" src="/images/Apple-Pay-Logo.png" alt="Apple-Pay-Logo" ></img>
+                                                </Button>
                                                 <PayPalButtons
                                                     {...paypalbuttonTransactionProps}
                                                 ></PayPalButtons>
@@ -201,7 +211,7 @@ export default function Order() {
                                             </div>
                                         )}
                                         {loadingPay && <LoadingBox></LoadingBox>}
-                                        <Button onClick={testPayHandler}>Paga (test)</Button>
+                                        
                                     </ListGroup.Item>
                                 )}
                             </ListGroup>

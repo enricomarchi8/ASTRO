@@ -34,7 +34,7 @@ export default function paymentMethod() {
             <CheckoutSteps step1 step2 step3></CheckoutSteps>
             <div className="container small-container">
                 <Helmet>
-                    <title>Metodo di Pagamento</title>
+                    <title>ASTRO-Metodo di Pagamento</title>
                 </Helmet>
                 <h1 className="my-3">Metodo di Pagamento</h1>
                 <Form onSubmit={submitHandler}>

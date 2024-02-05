@@ -49,16 +49,16 @@ export default function Product() {
     ) : (
       <div>
         <Row>
-            <Col md={6}>
+            <Col md={4} className='image-product-column'>
                 <img className='large' src={product.immagine} alt={product.nome}></img>
             </Col>
-            <Col md={3}>
+            <Col md={3} className='col-product'>
                 <ListGroup variant="flush">
                     <ListGroup.Item>
                         <Helmet>
-                            <title>{product.nome}</title>
+                            <title>ASTRO- {product.nome}</title>
                         </Helmet>
-                        <h1>{product.nome}</h1>
+                        <h1 className='product-name'>{product.nome}</h1>
                     </ListGroup.Item>
                     <ListGroup.Item>
                         <Rating
@@ -66,7 +66,7 @@ export default function Product() {
                           numReviews={product.numRecensioni}
                         ></Rating>
                     </ListGroup.Item>
-                    <ListGroup.Item>Prezzo: ${product.prezzo}</ListGroup.Item>
+                    <ListGroup.Item>Prezzo: €{product.prezzo}</ListGroup.Item>
                     <ListGroup.Item>
                         Descrizione: 
                         <p>{product.descrizione}</p>
@@ -76,13 +76,13 @@ export default function Product() {
                 </ListGroup>
             </Col>
             <Col md={3}>
-                <Card>
-                    <Card.Body>
+                <Card className='card-add'>
+                    <Card.Body className='card-body-add'>
                         <ListGroup variant="flush">
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Prezzo:</Col>
-                                    <Col>${product.prezzo}</Col>
+                                    <Col>€{product.prezzo}</Col>
                                 </Row>
                             </ListGroup.Item>
                             <ListGroup.Item>
@@ -90,9 +90,9 @@ export default function Product() {
                                     <Col> Status: </Col>
                                     <Col>
                                     {product.disponibilita > 0 ? (
-                                        <Badge bg="success">Disponibile</Badge>
+                                        <Badge className='product-badge' bg="success">Disponibile</Badge>
                                     ) : (
-                                        <Badge bg="danger">Non Disponibile</Badge>
+                                        <Badge className='product-badge' bg="danger">Non Disponibile</Badge>
                                     )}
                                     </Col>
                                 </Row>

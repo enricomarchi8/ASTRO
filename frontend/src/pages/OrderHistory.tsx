@@ -14,7 +14,7 @@ export default function OrderHistoryPage() {
     return (
         <div>
             <Helmet>
-                <title>Storico Ordini</title>
+                <title>ASTRO-Storico Ordini</title>
             </Helmet>
 
             <h1>Storico Ordini</h1>

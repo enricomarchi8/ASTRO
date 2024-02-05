@@ -56,12 +56,12 @@ export default function PlaceOrder() {
         <div>
             <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
             <Helmet>
-                <title>Preview Ordine</title>
+                <title>ASTRO-Preview Ordine</title>
             </Helmet>
             <h1 className="my-3">Preview Ordine</h1>
             <Row>
                 <Col md={8}>
-                    <Card className="mb-3">
+                    <Card className="card-checkout">
                         <Card.Body>
                             <Card.Title>Spedizione</Card.Title>
                             <Card.Text>
@@ -74,7 +74,7 @@ export default function PlaceOrder() {
                         </Card.Body>
                     </Card>
 
-                    <Card className="mb-3">
+                    <Card className="card-checkout">
                         <Card.Body>
                             <Card.Title>Pagamento</Card.Title>
                             <Card.Text>
@@ -84,7 +84,7 @@ export default function PlaceOrder() {
                         </Card.Body>
                     </Card>
 
-                    <Card className="mb-3">
+                    <Card className="card-checkout">
                         <Card.Body>
                             <Card.Title>Articoli</Card.Title>
                             <ListGroup variant="flush">
@@ -100,9 +100,9 @@ export default function PlaceOrder() {
                                                 <Link to={`/product/${item.slug}`}>{item.name}</Link>
                                             </Col>
                                             <Col md={3}>
-                                                <span>{item.quantity}</span>
+                                                <span>Quantità: {item.quantity}</span>
                                             </Col>
-                                            <Col md={3}>€{item.price}</Col>
+                                            <Col md={3}> Singola Unità: €{item.price}</Col>
                                         </Row>
                                 </ListGroup.Item>
                                 ))}
@@ -112,7 +112,7 @@ export default function PlaceOrder() {
                     </Card>
                 </Col>
                 <Col md={4}>
-                    <Card>
+                    <Card className="card-report">
                         <Card.Body>
                             <Card.Title>Resoconto Ordine</Card.Title>
                             <ListGroup variant="flush">
