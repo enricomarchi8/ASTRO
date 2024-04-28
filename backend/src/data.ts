@@ -31,7 +31,7 @@ export const sampleProducts:Product[] = [
         nome: 'T-Shirt Donna scritta ASTRO',
         slug: 'T-Shirt Donna scritta ASTRO',
         immagine: '../images/T-shirt_D_ASTRO.jpeg',
-        categoria: '', 
+        categoria: 'Magliette', 
         marca: 'Astro',
         prezzo: 70, 
         disponibilita: 100,
