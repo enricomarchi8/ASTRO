@@ -22,7 +22,7 @@ export default function HomePage() {
       </Helmet>
 
       <h1 className="shop-title mt-3">
-        <strong>Che lo spazio sia con te.</strong>
+        <strong>Che lo spazio sia con te</strong>
       </h1>
 
       {products!.map((product) => (
