@@ -104,8 +104,8 @@ function App() {
           </Container>
         </Navbar>
       </header>
-      <main className="h-100">
-        <Container fluid={true} className="p-0" style={{ height: "86%" }}>
+      <main>
+        <Container>
           <Outlet />
         </Container>
       </main>
