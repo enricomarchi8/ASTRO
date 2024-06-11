@@ -11,7 +11,6 @@ import { HelmetProvider } from 'react-helmet-async'
 import App from './App'
 import './index.css'
 import Home from './pages/Home'
-import Blog from './pages/Blog'
 import Shop from './pages/Shop'
 import Product from './pages/Product'
 import Cart from './pages/Cart'
@@ -27,12 +26,15 @@ import PlaceOrder from './pages/PlaceOrder'
 import Order from './pages/Order'
 import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 import OrderHistory from './pages/OrderHistory'
+import BlogHome from './pages/BlogHome'
+import BlogPost from './pages/BlogPost'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} element={<Home />} />
-      <Route path="blog" element={<Blog />} />
+      <Route path="/blog" element={<BlogHome />} />
+      <Route path="/blog/:id" element={<BlogPost />} />
       <Route path="shop" element={<Shop />} />
       <Route path="product/:slug" element={<Product />} />
       <Route path="cart" element={<Cart />} />

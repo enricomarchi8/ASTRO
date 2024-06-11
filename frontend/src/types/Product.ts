@@ -10,4 +10,5 @@ export type Product = {
     descrizione: string
     valutazione: number
     numRecensioni: number
+    commenti: Comment[]
 }
