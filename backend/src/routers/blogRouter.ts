@@ -15,7 +15,7 @@ blogRouter.get(
 blogRouter.get(
   '/:id',
   asyncHandler(async (req, res) => {
-      const post = await BlogModel.findOne({ id: req.params.id })
+      const post = await BlogModel.findById(req.params.id)
       
       if (post) {
           res.json(post)
