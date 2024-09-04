@@ -1,4 +1,4 @@
-import { modelOptions, prop, getModelForClass, Ref } from '@typegoose/typegoose'
+import { modelOptions, prop, getModelForClass } from '@typegoose/typegoose'
 
 
 export @modelOptions({ schemaOptions: { timestamps: true }})
@@ -34,9 +34,6 @@ class Product {
 
     @prop({ required: true, default: 0 })
     public numRecensioni!: number
-
-    @prop({ ref: () => require('./commentModel').Comment, default: []})
-    public commenti!: Ref<any>[];
 }
 
 

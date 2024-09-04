@@ -5,13 +5,12 @@ import LoadingBox from '../components/LoadingBox'
 import { convertProductToCartItem, getError } from '../utils'
 import { ApiError } from '../types/ApiError'
 import MessageBox from '../components/MessageBox'
-import { Badge, Button, Card, Col, Form, ListGroup, Row } from 'react-bootstrap'
+import { Badge, Button, Card, Col, ListGroup, Row } from 'react-bootstrap'
 import Rating from '../components/Rating'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { Store } from '../Store'
 import { toast } from 'react-toastify'
-import axios from 'axios'
-import "../styles/Comments.css";
+
 
 export default function Product() {
     const params = useParams()
@@ -24,32 +23,6 @@ export default function Product() {
 
     const { state, dispatch } = useContext(Store)
     const { cart } = state
-
-    //comment initial state
-    const [comment, setComment] = useState('');
-    const [rating, setRating] = useState(0);
-    const [comments, setComments] = useState(product?.commenti || []);
-
-    //Function to handle the submit of the comment
-    const submitCommmentHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        try{
-            const url = `/api/comments/${product?._id}`;
-            console.log('Submitting comment to:', url);
-            const { data } = await axios.post(url, {
-                text: comment,
-                rating,
-                author: "Nome Autore",
-            });
-            setComments([...comments, data]);
-            setComment('');
-            setRating(0);
-            toast.success('Commento pubblicato con successo')
-        }catch(error){
-            console.error("Errore nell'invio del commento: ", error);
-            toast.error(getError(error as unknown as ApiError))
-        }
-    };
 
     const navigate = useNavigate()
 
@@ -138,52 +111,6 @@ export default function Product() {
                 </Card>
             </Col>
         </Row>
-        <div className="comment-section">
-            <h2>Commenti</h2>
-            {comments && comments.length > 0 ? (
-                comments.map((comment) => (
-                  <div className="comment-item" key={comment._id}>
-                    <div className="comment-author">{comment.autore}</div>
-                    <div className="comment-rating">
-                     <Rating rating={comment.valutazione} numReviews={1}></Rating>
-                     <span>{comment.valutazione} / 5</span>
-                    </div>
-                    <div className="comment-text">{comment.text}</div>
-                  </div>
-                ))
-            ) : ( 
-                <p>Ancora nessun commento</p>
-            )}
-            <Form className="comment-form" onSubmit={submitCommmentHandler}>
-                <Form.Group controlId="comment">
-                    <Form.Label>Scrivi un commento</Form.Label>
-                    <Form.Control
-                      as="textarea" 
-                      rows={3} 
-                      value={comment} 
-                      onChange={(e) => setComment(e.target.value)}>
-
-                    </Form.Control>
-                </Form.Group>
-                <Form.Group controlId="rating">
-                    <Form.Label>Valutazione</Form.Label>
-                    <Form.Control 
-                        as="select" 
-                        value={rating} 
-                        onChange={(e) => setRating(Number(e.target.value))}
-
-                       >
-                        <option value="">Seleziona...</option>
-                        <option value="1">1 - Pessimo</option>
-                        <option value="2">2 - Scarso</option>
-                        <option value="3">3 - Buono</option>
-                        <option value="4">4 - Molto Buono</option>
-                        <option value="5">5 - Eccellente</option>
-                    </Form.Control>
-                </Form.Group>
-                <Button type="submit" variant="primary">Invia</Button>
-            </Form>
-          </div>
       </div>
     );
 }

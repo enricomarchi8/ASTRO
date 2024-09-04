@@ -14,8 +14,7 @@ export const sampleProducts:Product[] = [
         disponibilita: 0,
         descrizione: 'Maglietta 100% cotone. Made in Italy.',
         valutazione: 5,
-        numRecensioni: 130,
-        commenti: []
+        numRecensioni: 130
     },
     {
         nome: 'T-Shirt Donna logo ASTRO',
@@ -27,8 +26,7 @@ export const sampleProducts:Product[] = [
         disponibilita: 100,
         descrizione: 'Maglietta 100% cotone. Made in Italy.',
         valutazione: 4.8,
-        numRecensioni: 88,
-        commenti: []
+        numRecensioni: 88
     },
     {
         nome: 'T-Shirt Donna scritta ASTRO',
@@ -40,8 +38,7 @@ export const sampleProducts:Product[] = [
         disponibilita: 100,
         descrizione: 'Maglietta 100% cotone. Made in Italy.',
         valutazione: 3.5,
-        numRecensioni: 68,
-        commenti: []
+        numRecensioni: 68
     },
     {
         nome: 'Felpa Uomo ASTRO',
@@ -53,8 +50,7 @@ export const sampleProducts:Product[] = [
         disponibilita: 100,
         descrizione: 'Felpa 100% cotone. Made in Italy.',
         valutazione: 4.9,
-        numRecensioni: 54,
-        commenti: []
+        numRecensioni: 54
     },
     {
         nome: 'Felpa Donna ASTRO',
@@ -66,8 +62,7 @@ export const sampleProducts:Product[] = [
         disponibilita: 100,
         descrizione: 'Felpa 100% cotone. Made in Italy.',
         valutazione: 4.9,
-        numRecensioni: 60,
-        commenti: []
+        numRecensioni: 60
     },
     {
         nome: 'Tazza ASTRO',
@@ -79,8 +74,7 @@ export const sampleProducts:Product[] = [
         disponibilita: 100,
         descrizione: 'Tazza 100% ceramica. Made in Italy.',
         valutazione: 3.5,
-        numRecensioni: 80,
-        commenti: []
+        numRecensioni: 80
     },
     {
         nome: 'Cappello con visiera ASTRO',
@@ -93,7 +87,6 @@ export const sampleProducts:Product[] = [
         descrizione: 'Cappello 100% cotone. Made in Italy.',
         valutazione: 4.0,
         numRecensioni: 100,
-        commenti: []
     },
     {
         nome: 'Calzini ASTRO',
@@ -105,8 +98,7 @@ export const sampleProducts:Product[] = [
         disponibilita: 100,
         descrizione: 'Calzini 100% cotone. Made in Italy.',
         valutazione: 4.2,
-        numRecensioni: 37,
-        commenti: []
+        numRecensioni: 37
     },
     {
         nome: 'Quaderno ASTRO',
@@ -118,8 +110,7 @@ export const sampleProducts:Product[] = [
         disponibilita: 100,
         descrizione: 'Quaderno a righe ottimo per gli appunti.',
         valutazione: 3.7,
-        numRecensioni: 23,
-        commenti: []
+        numRecensioni: 23
     },
 ]
 
