@@ -6,9 +6,11 @@ import { getError } from "../utils";
 import { ApiError } from "../types/ApiError";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import { format } from "date-fns";
+import { it } from "date-fns/locale";
 
 export default function BlogHome() {
-    /*
+  /*
     const { id } = useParams<{ id:string }>();
         const [blog, setBlog] = useState<Blog | null>(null);
 
@@ -20,31 +22,37 @@ export default function BlogHome() {
 
         if (!blog) return <div>Caricamento...</div>;
     */
-        const { data: posts, isLoading, error } = useGetPostsQuery();
+  const { data: posts, isLoading, error } = useGetPostsQuery();
 
-        return isLoading ? (
-            <LoadingBox /> 
-          ) : error ? (
-            <MessageBox variant="danger">{getError(error as unknown as ApiError)}</MessageBox>
-          ) : !posts ? (
-            <MessageBox variant="danger">Blogs Not Found</MessageBox>
-          ) : (
-          <div className="home">
-            <Helmet>
-              <title>ASTRO-Blog</title>
-            </Helmet>
-            <h1>Blog</h1>
-            {posts!.map((post) => (
-              <div className="blog-grid" key={post._id}>
-                <Link to={`/blog/${post._id}`} className="post-card">
-                  <img src={post.imageUrl} alt={post.title} />
-                  <div className="post-content">
-                      <h2>{post.title}</h2>
-                      <p>{post.date}</p>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
-        );
+  return isLoading ? (
+    <LoadingBox />
+  ) : error ? (
+    <MessageBox variant="danger">
+      {getError(error as unknown as ApiError)}
+    </MessageBox>
+  ) : !posts ? (
+    <MessageBox variant="danger">Blogs Not Found</MessageBox>
+  ) : (
+    <div className="home">
+      <Helmet>
+        <title>ASTRO-Blog</title>
+      </Helmet>
+      <h1>Blog</h1>
+      <div className="blog-grid">
+        {posts!.map((post) => (
+          <Link to={`/blog/${post._id}`} className="blog-card">
+            <img src={post.imageUrl} alt={post.title} />
+            <div className="blog-content">
+              <p>
+                {format(new Date(post.date), "EEEE d LLLL yyyy", {
+                  locale: it,
+                })}
+              </p>
+              <h2>{post.title}</h2>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
 }

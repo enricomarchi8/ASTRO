@@ -5,6 +5,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  --mainColor: #141414;
+  --secondaryColor: #db2b39;
+	--textColor: #eee;
 }
 
 .full-width {
@@ -12,7 +15,7 @@
   max-height: none;
   padding: 0;
   width: 100vw;
-  height: 50vw;
+  height: 48vw;
   position: relative;
   left: 50%;
   right: 50%;
@@ -25,6 +28,82 @@ body {
   margin: 0;
 }
 */
+
+/* NAVBAR */
+header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 80px;
+	padding: 0 2rem;
+	background-color: var(--mainColor);
+	color: var(--textColor);
+}
+
+nav a {
+	margin: 0 1rem;
+	color: var(--textColor);
+	text-decoration: none;
+}
+
+nav a:hover {
+	color: var(--secondaryColor);
+}
+
+header .nav-btn {
+	padding: 5px;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	outline: none;
+	color: var(--textColor);
+	visibility: hidden;
+	opacity: 0;
+	font-size: 1.8rem;
+}
+
+header div,
+nav {
+	display: flex;
+	align-items: center;
+}
+
+@media only screen and (max-width: 1024px) {
+	header .nav-btn {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	header nav {
+		position: fixed;
+		top: -100vh;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 1.5rem;
+		background-color: var(--mainColor);
+		transition: 1s;
+    z-index: 2;
+	}
+
+	header .responsive_nav {
+		transform: translateY(100vh);
+	}
+
+	nav .nav-close-btn {
+		position: absolute;
+		top: 2rem;
+		right: 2rem;
+	}
+
+	nav a {
+		font-size: 1.5rem;
+	}
+}
 
 .product-image{
   max-width: 400px;
@@ -97,6 +176,7 @@ a.header-link:hover,
   border: 1px rgb(33, 37, 41) solid;
 }
 
+/*
 #icona-home {
   display: flex;
   align-items: center;
@@ -105,6 +185,7 @@ a.header-link:hover,
   padding: 0;
   margin: 0;
 }
+  */
 
 
 .navbar .nav-link:hover {
@@ -254,5 +335,5 @@ footer {
   padding: 20px;
   margin-top: 20px;
   color: #fff;
-  background-color: #be2ed6;
+  background-color: var(--mainColor);
 }
