@@ -38,16 +38,26 @@ export default function BlogPost() {
           <img src={post.imageUrl} alt={post.title} className="blog-post-image" />
           <h1>{post.title}</h1>
           <div className="blog-post-meta">
-              <img src="" alt={post.author} className="blog-post-author-image"/>
-              <span>By {post.author} - {post.date}</span>
+              <img 
+                src={post.author.avatar} 
+                alt={post.author.name} 
+                className="blog-post-author-image"/>
+              <span>By {post.author.name} - {post.date}</span>
            </div>
           <Card className="blog-post-content">
               <Card.Body>
-                  <div dangerouslySetInnerHTML={{ __html: post.content}}></div>
+                  {post.content.split('\n\n').map((paragraph, index) => (
+                    <p key={index}>
+                      {paragraph.split('\n').map((line, i) => (
+                        <span key={i} 
+                        dangerouslySetInnerHTML={{ __html: line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}
+                        />                         
+                      ))}
+                    </p>
+                  ))}
                 </Card.Body>
              </Card>    
-      </div>
-        
+      </div>   
     );
 }
 

@@ -11,6 +11,14 @@ export class User {
     public password!: string
     @prop({ required: true, default: false})
     public isAdmin!: boolean
+
+    @prop({
+        required: true,
+        default: function() {
+            return `https://api.dicebear.com/9.x/identicon/svg?seed=${encodeURIComponent(this.email)}`
+        }
+    })
+    public avatar!: string
 }
 
 export const UserModel = getModelForClass(User)
