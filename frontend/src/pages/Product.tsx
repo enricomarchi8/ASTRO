@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useGetProductDetailsBySlugQuery } from '../hooks/productHooks'
 import LoadingBox from '../components/LoadingBox'
-import { convertProductToCartItem, getError } from '../utils'
+import { calcPriceTaxed, convertProductToCartItem, getError } from '../utils'
 import { ApiError } from '../types/ApiError'
 import MessageBox from '../components/MessageBox'
 import { Badge, Button, Card, Col, ListGroup, Row } from 'react-bootstrap'
@@ -41,6 +41,8 @@ export default function Product() {
         navigate('/cart')
     }
 
+    const priceTaxed = calcPriceTaxed(product?.prezzo || 0); //gestiamo anche il fatto che product possa non essere ancora definito
+
     return isLoading ? (
       <LoadingBox /> 
     ) : error ? (
@@ -67,7 +69,7 @@ export default function Product() {
                           numReviews={product.numRecensioni}
                         ></Rating>
                     </ListGroup.Item>
-                    <ListGroup.Item>Prezzo: €{product.prezzo}</ListGroup.Item>
+                    <ListGroup.Item>Prezzo: €{priceTaxed} (IVA inclusa)</ListGroup.Item>
                     <ListGroup.Item>
                         Descrizione: 
                         <p>{product.descrizione}</p>

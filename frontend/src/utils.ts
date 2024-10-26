@@ -20,3 +20,12 @@ export const convertProductToCartItem = (product: Product) : CartItem => {
   }
   return CartItem
 }
+
+export const getRandomItems = <T>(items: T[], count: number): T[] => {
+  const shuffled = [...items].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+};
+
+export const calcPriceTaxed = (price: number, tax: number = 0.22): number => {
+  return Math.round(price * (1 + tax) * 100) / 100; // Arrotondamento a due decimali
+}

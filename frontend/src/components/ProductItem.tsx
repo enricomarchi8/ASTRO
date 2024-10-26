@@ -5,7 +5,7 @@ import Rating from "./Rating";
 import { Store } from "../Store";
 import { useContext } from "react";
 import { CartItem } from "../types/Cart";
-import { convertProductToCartItem } from "../utils";
+import { calcPriceTaxed, convertProductToCartItem } from "../utils";
 import { toast } from "react-toastify";
 
 function ProductItem({ product }: { product: Product }) {
@@ -28,35 +28,40 @@ function ProductItem({ product }: { product: Product }) {
       toast.success('Prodotto aggiunto al carrello')
   }
 
+  const priceTaxed = calcPriceTaxed(product.prezzo)
+
   return (
-    <Card>
-      <Link to={`/product/${product.slug}`}>
-        <img
+    <Link to={`/product/${product.slug}`} style={{ textDecoration: 'none' }}>
+      <Card className="h-100">
+        <Card.Img
           src={product.immagine}
           className="card-img-top"
           alt={product.nome}
         />
-      </Link>
-      <Card.Body>
-        <Link to={`/product/${product.slug}`}>
+        <Card.Body>
           <Card.Title>{product.nome}</Card.Title>
-        </Link>
-        <Rating
-          rating={product.valutazione}
-          numReviews={product.numRecensioni}
-        />
-        <Card.Text>€{product.prezzo}</Card.Text>
-        {product.disponibilita === 0 ? (
-          <Button variant="light" disabled>
-            Non disponibile
-          </Button>
-        ) : (
-          <Button onClick={() => addToCartHandler(convertProductToCartItem(product))}>
-            Aggiungi al Carrello
-          </Button>
-        )}
-      </Card.Body>
-    </Card>
+          <Rating
+            rating={product.valutazione}
+            numReviews={product.numRecensioni}
+          />
+          <Card.Text>€{priceTaxed}</Card.Text>
+          {product.disponibilita === 0 ? (
+            <Button variant="light" disabled>
+              Non disponibile
+            </Button>
+          ) : (
+            <Button
+              onClick={(e) => {
+                e.preventDefault(); // Evita che il click sul bottone segua il link
+                addToCartHandler(convertProductToCartItem(product));
+              }}
+            >
+              Aggiungi al Carrello
+            </Button>
+          )}
+        </Card.Body>
+      </Card>
+    </Link>
   );
 }
 

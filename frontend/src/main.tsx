@@ -20,7 +20,7 @@ import { StoreProvider } from './Store'
 import Signin from './pages/Signin'
 import Signup from './pages/Signup'
 import Shipping from './pages/Shipping'
-import PaymentMethod from './pages/PaymentMethod'
+
 import ProtectedRoute from './components/ProtectedRoute'
 import PlaceOrder from './pages/PlaceOrder'
 import Order from './pages/Order'
@@ -42,7 +42,7 @@ const router = createBrowserRouter(
       <Route path="signup" element={<Signup />} />    
       <Route path="" element={<ProtectedRoute />}>
         <Route path="shipping" element={<Shipping />} />
-        <Route path="payment" element={<PaymentMethod />} />
+        
         <Route path="placeorder" element={<PlaceOrder />} />
         <Route path="/order/:id" element={<Order />} />
         <Route path="/orderhistory" element={<OrderHistory />} />

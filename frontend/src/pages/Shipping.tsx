@@ -48,7 +48,7 @@ export default function Shipping() {
             })
         )
 
-        navigate('/payment')
+        navigate('/placeorder')
     }
 
     return (

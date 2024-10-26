@@ -54,7 +54,7 @@ export default function PlaceOrder() {
 
     return (
         <div>
-            <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
+            <CheckoutSteps step1 step2 step3></CheckoutSteps>
             <Helmet>
                 <title>ASTRO-Preview Ordine</title>
             </Helmet>
@@ -78,9 +78,9 @@ export default function PlaceOrder() {
                         <Card.Body>
                             <Card.Title>Pagamento</Card.Title>
                             <Card.Text>
-                                <strong>Metodo di pagamento:</strong> {cart.paymentMethod}
+                                <strong>Status pagamento:</strong> 
                             </Card.Text>
-                            <Link to="/payment">Modifica</Link>
+                    
                         </Card.Body>
                     </Card>
 
@@ -122,16 +122,16 @@ export default function PlaceOrder() {
                                         <Col>€{cart.itemsPrice.toFixed(2)}</Col>
                                     </Row>
                                 </ListGroup.Item>
-                                <ListGroup.Item>
+                                <ListGroup.Item>                                    
                                     <Row>
-                                        <Col>Spedizione</Col>
-                                        <Col>€{cart.shippingPrice.toFixed(2)}</Col>
+                                        <Col>di cui IVA</Col>
+                                        <Col>€{cart.taxPrice.toFixed(2)}</Col>
                                     </Row>
                                 </ListGroup.Item>
                                 <ListGroup.Item>
                                     <Row>
-                                        <Col>di cui IVA</Col>
-                                        <Col>€{cart.taxPrice.toFixed(2)}</Col>
+                                        <Col>Spedizione</Col>
+                                        <Col>€{cart.shippingPrice.toFixed(2)}</Col>
                                     </Row>
                                 </ListGroup.Item>
                                 <ListGroup.Item>
