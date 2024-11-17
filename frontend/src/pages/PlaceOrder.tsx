@@ -91,19 +91,43 @@ export default function PlaceOrder() {
                                 {cart.cartItems.map((item) => (
                                     <ListGroup.Item key={item._id}>
                                         <Row className="align-items-center">
-                                            <Col md={6}>
+                                            <Col md={6} className="d-flex align-items-center">
                                                 <img
                                                     src={item.image}
                                                     alt={item.name}
-                                                    className="img-fluid rounded thumbnail"
+                                                    className="img-fluid rounded thumbnail me-3"
                                                 ></img>{' '}
                                                 <Link to={`/product/${item.slug}`}>{item.name}</Link>
                                             </Col>
-                                            <Col md={3}>
-                                                <span>Quantità: {item.quantity}</span>
-                                            </Col>
-                                            <Col md={3}> Singola Unità: €{item.price}</Col>
-                                        </Row>
+                                            <Col md={6}>                 
+                                                <Row>
+                                                    <Col xs={6} className="text-end">
+                                                        <strong>Taglia:</strong> 
+                                                    </Col>
+                                                    <Col xs={6} className="text-end">
+                                                        {item.selectedSize || 'N/A'}
+                                                    </Col>
+                                                    <Col xs={6} className="text-end">
+                                                        <strong>Colore:</strong>
+                                                    </Col>
+                                                    <Col xs={6} className="text-end">
+                                                        {item.selectedColor || 'N/A'}
+                                                    </Col>
+                                                    <Col xs={6} className="text-end">
+                                                        <strong>Quantità:</strong>
+                                                    </Col>
+                                                    <Col xs={6} className="text-end">
+                                                        {item.quantity}
+                                                    </Col>
+                                                    <Col xs={6} className="text-end">
+                                                        <strong>Singola Unità:</strong>
+                                                    </Col>
+                                                    <Col xs={6} className="text-end">
+                                                        €{item.price}
+                                                    </Col>
+                                                </Row>
+                                            </Col>  
+                                        </Row>                                            
                                 </ListGroup.Item>
                                 ))}
                             </ListGroup>

@@ -144,10 +144,34 @@ export default function Order() {
                                                 ></img>{' '}
                                                 <Link to={`/product/${item.slug}`}>{item.name}</Link>
                                             </Col>
-                                            <Col md={3}>
-                                                <span>{item.quantity}</span>
-                                            </Col>
-                                            <Col md={3}>€{item.price}</Col>
+                                            <Col md={6}>                 
+                                                <Row>
+                                                    <Col xs={6} className="text-end">
+                                                        <strong>Taglia:</strong> 
+                                                    </Col>
+                                                    <Col xs={6} className="text-end">
+                                                        {item.selectedSize || 'N/A'}
+                                                    </Col>
+                                                    <Col xs={6} className="text-end">
+                                                        <strong>Colore:</strong>
+                                                    </Col>
+                                                    <Col xs={6} className="text-end">
+                                                        {item.selectedColor || 'N/A'}
+                                                    </Col>
+                                                    <Col xs={6} className="text-end">
+                                                        <strong>Quantità:</strong>
+                                                    </Col>
+                                                    <Col xs={6} className="text-end">
+                                                        {item.quantity}
+                                                    </Col>
+                                                    <Col xs={6} className="text-end">
+                                                        <strong>Singola Unità:</strong>
+                                                    </Col>
+                                                    <Col xs={6} className="text-end">
+                                                        €{item.price}
+                                                    </Col>
+                                                </Row>
+                                            </Col>                                            
                                         </Row>
                                     </ListGroup.Item>
                                 ))}

@@ -14,7 +14,9 @@ export const sampleProducts:Product[] = [
         disponibilita: 0,
         descrizione: 'Maglietta 100% cotone. Made in Italy.',
         valutazione: 5,
-        numRecensioni: 130
+        numRecensioni: 130,
+        taglie: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+        colori: ['Rosso', 'Blu', 'Verde', 'Giallo', 'Nero', 'Bianco','Viola' ]
     },
     {
         nome: 'T-Shirt Donna logo ASTRO',
@@ -26,7 +28,9 @@ export const sampleProducts:Product[] = [
         disponibilita: 100,
         descrizione: 'Maglietta 100% cotone. Made in Italy.',
         valutazione: 4.8,
-        numRecensioni: 88
+        numRecensioni: 88,
+        taglie: ['XS', 'S', 'M', 'L', 'XL'],
+        colori: ['Rosso', 'Blu', 'Verde', 'Giallo', 'Nero', 'Bianco','Viola' ]
     },
     {
         nome: 'T-Shirt Donna scritta ASTRO',
@@ -38,7 +42,9 @@ export const sampleProducts:Product[] = [
         disponibilita: 100,
         descrizione: 'Maglietta 100% cotone. Made in Italy.',
         valutazione: 3.5,
-        numRecensioni: 68
+        numRecensioni: 68,
+        taglie: ['XS', 'S', 'M', 'L', 'XL'],
+        colori: ['Rosso', 'Blu', 'Giallo', 'Nero', 'Bianco', 'Viola' ]
     },
     {
         nome: 'Felpa Uomo ASTRO',
@@ -50,7 +56,9 @@ export const sampleProducts:Product[] = [
         disponibilita: 100,
         descrizione: 'Felpa 100% cotone. Made in Italy.',
         valutazione: 4.9,
-        numRecensioni: 54
+        numRecensioni: 54,
+        taglie: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+        colori: ['Blu', 'Verde', 'Nero', 'Bianco', 'Arancione', 'Viola' ]
     },
     {
         nome: 'Felpa Donna ASTRO',
@@ -62,7 +70,9 @@ export const sampleProducts:Product[] = [
         disponibilita: 100,
         descrizione: 'Felpa 100% cotone. Made in Italy.',
         valutazione: 4.9,
-        numRecensioni: 60
+        numRecensioni: 60,
+        taglie: ['XS', 'S', 'M', 'L', 'XL'],
+        colori: ['Blu', 'Verde', 'Nero', 'Bianco', 'Arancione', 'Viola' ]
     },
     {
         nome: 'Tazza ASTRO',
@@ -74,7 +84,9 @@ export const sampleProducts:Product[] = [
         disponibilita: 100,
         descrizione: 'Tazza 100% ceramica. Made in Italy.',
         valutazione: 3.5,
-        numRecensioni: 80
+        numRecensioni: 80,
+        taglie: ['Piccola', 'Media', 'grande'],
+        colori: ['Rosso', 'Blu', 'Verde', 'Giallo', 'Nero', 'Bianco', 'Arancione', 'Viola' ]
     },
     {
         nome: 'Cappello con visiera ASTRO',
@@ -87,6 +99,8 @@ export const sampleProducts:Product[] = [
         descrizione: 'Cappello 100% cotone. Made in Italy.',
         valutazione: 4.0,
         numRecensioni: 100,
+        taglie: ['S', 'M', 'L'],
+        colori: ['Rosso', 'Blu', 'Verde', 'Giallo', 'Nero', 'Bianco', 'Arancione', 'Viola' ]
     },
     {
         nome: 'Calzini ASTRO',
@@ -98,7 +112,9 @@ export const sampleProducts:Product[] = [
         disponibilita: 100,
         descrizione: 'Calzini 100% cotone. Made in Italy.',
         valutazione: 4.2,
-        numRecensioni: 37
+        numRecensioni: 37,
+        taglie: ['S', 'M', 'L'],
+        colori: ['Rosso', 'Blu', 'Verde', 'Giallo', 'Nero', 'Bianco', 'Arancione', 'Viola' ]
     },
     {
         nome: 'Quaderno ASTRO',
@@ -110,7 +126,9 @@ export const sampleProducts:Product[] = [
         disponibilita: 100,
         descrizione: 'Quaderno a righe ottimo per gli appunti.',
         valutazione: 3.7,
-        numRecensioni: 23
+        numRecensioni: 23,
+        taglie: ['A4', 'A5'],
+        colori: ['Rosso', 'Blu', 'Verde', 'Giallo', 'Nero', 'Bianco', 'Arancione', 'Viola' ]
     },
 ]
 

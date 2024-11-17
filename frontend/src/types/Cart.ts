@@ -6,6 +6,8 @@ export type CartItem = {
     price: number
     _id: string
     name: string
+    selectedSize?: string
+    selectedColor?: string
 }
 
 export type ShippingAddress = {

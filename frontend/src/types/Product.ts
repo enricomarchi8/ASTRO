@@ -10,4 +10,6 @@ export type Product = {
     descrizione: string
     valutazione: number
     numRecensioni: number
+    taglie: string[]
+    colori: string[]
 }

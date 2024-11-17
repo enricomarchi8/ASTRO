@@ -61,15 +61,16 @@ export default function Cart() {
               {cartItems.map((item: CartItem) => (
                 <ListGroupItem key={item._id}>
                   <Row className="row-cart" /*align-items-center*/>
-                    <Col md={4}>
+                    <Col md={4} className="d-flex align-items-center">
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="cart-img" //img-fluid rounded img-thumbnail
+                        className="img-fluid rounded thumbnail me-3" //img-fluid rounded img-thumbnail
                       ></img>{" "}
                       <Link to={`/product/${item.slug}`}>{item.name}</Link>
+                      
                     </Col>
-                    <Col md={3}>
+                    <Col md={3} className="d-flex align-items-center justify-content-center">
                       <Button
                         onClick={() =>
                           updateCartHandler(item, item.quantity - 1)
@@ -79,7 +80,7 @@ export default function Cart() {
                       >
                         <i className="fas fa-minus-circle"></i>
                       </Button>{" "}
-                      <span>{item.quantity}</span>
+                      <span className="mx-2">{item.quantity}</span>
                       <Button
                         onClick={() =>
                           updateCartHandler(item, item.quantity + 1)
@@ -90,17 +91,28 @@ export default function Cart() {
                         <i className="fas fa-plus-circle"></i>
                       </Button>
                     </Col>
-                    <Col md={3} className="col-cart-price">
-                      €{item.price}
+                    <Col md={3}>
+                        <Row>
+                            <Col>
+                              <div><strong>Prezzo:</strong> €{item.price}</div>
+                              {item.selectedSize && (
+                                <div><strong>Taglia:</strong> {item.selectedSize}</div>
+                              )}
+                              {item.selectedColor && (
+                                <div><strong>Colore:</strong> {item.selectedColor}</div>
+                              )}
+                            </Col>
+                            <Col className="d-flex align-items-center justify-content-center">
+                              <Button
+                                onClick={() => removeItemHandler(item)}
+                                variant={mode}
+                              >
+                                <i className="fas fa-trash"></i>
+                              </Button>
+                            </Col>
+                        </Row>
                     </Col>
-                    <Col md={2}>
-                      <Button
-                        onClick={() => removeItemHandler(item)}
-                        variant={mode}
-                      >
-                        <i className="fas fa-trash"></i>
-                      </Button>
-                    </Col>
+                    
                   </Row>
                 </ListGroupItem>
               ))}

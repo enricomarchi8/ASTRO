@@ -34,6 +34,12 @@ class Product {
 
     @prop({ required: true, default: 0 })
     public numRecensioni!: number
+
+    @prop({ type: () => [String], default: [] })
+    public taglie!: string[]
+
+    @prop({ type: () => [String], default: [] })
+    public colori!: string[]
 }
 
 
