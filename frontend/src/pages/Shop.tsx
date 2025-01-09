@@ -6,8 +6,9 @@ import { Helmet } from "react-helmet-async";
 import { useGetProductsQuery } from "../hooks/productHooks";
 import { getError } from "../utils";
 import { ApiError } from "../types/ApiError";
+import ProductModal from "../components/ProductModal";
 
-export default function HomePage() {
+export default function Shop() {
   const { data: products, isLoading, error } = useGetProductsQuery();
   return isLoading ? (
     <LoadingBox />
@@ -18,12 +19,18 @@ export default function HomePage() {
   ) : (
     <Row>
       <Helmet>
-        <title>ASTRO-Shop</title>
+        <title>ASTRO - Shop</title>
       </Helmet>
 
       <h1 className="shop-title mt-3">
         <strong>Che lo spazio sia con te</strong>
       </h1>
+
+      <Row>
+        <Col className="d-flex justify-content-end">
+          <ProductModal name="Nuovo" />
+        </Col>
+      </Row>
 
       {products!.map((product) => (
         <Col key={product.slug} sm={6} md={4} lg={3} className="mt-3">

@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import apiClient from "../apiClient";
 import { Product } from "../types/Product";
 
@@ -14,3 +14,46 @@ export const useGetProductDetailsBySlugQuery = (slug: string) =>
         queryFn: async () =>
         (await apiClient.get<Product>(`api/products/slug/${slug}`)).data,
     })
+
+export const useCreateProductMutation = () => useMutation({
+    mutationFn:async (product: {
+        nome: string
+        slug: string
+        immagine: string
+        marca: string
+        categoria: string
+        descrizione: string
+        prezzo: number
+        disponibilita: number
+        valutazione: number
+        numRecensioni: number
+    }) =>
+        (
+            await apiClient.post<{ message: string; product: Product }>(
+                `api/products`,
+                product
+            )
+        ).data,
+})
+
+export const useEditProductMutation = () => useMutation({
+    mutationFn:async (product: {
+        _id: string
+        nome: string
+        slug: string
+        immagine: string
+        marca: string
+        categoria: string
+        descrizione: string
+        prezzo: number
+        disponibilita: number
+        valutazione: number
+        numRecensioni: number
+    }) =>
+    (
+        await apiClient.put<{ message: string; product: Product}>(
+            `api/products/${product._id}`,
+            product
+        )
+    ).data,
+})

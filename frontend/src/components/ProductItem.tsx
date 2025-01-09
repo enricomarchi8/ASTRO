@@ -1,4 +1,4 @@
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Product } from "../types/Product";
 import Rating from "./Rating";
@@ -7,31 +7,32 @@ import { useContext } from "react";
 import { CartItem } from "../types/Cart";
 import { calcPriceTaxed, convertProductToCartItem } from "../utils";
 import { toast } from "react-toastify";
+import ProductModal from "./ProductModal";
 
 function ProductItem({ product }: { product: Product }) {
-  const { state, dispatch } = useContext(Store)
+  const { state, dispatch } = useContext(Store);
   const {
     cart: { cartItems },
-  } = state 
+  } = state;
 
   const addToCartHandler = (item: CartItem) => {
-      const existItem = cartItems.find((x) => x._id === product._id)
-      const quantity = existItem ? existItem.quantity + 1 : 1
-      if (product.disponibilita < quantity) {
-        alert('Mi dispiace. Il prodotto non è più disponibile')
-        return
-      }
-      dispatch({
-        type: 'CART_ADD_ITEM',
-        payload: { ...item, quantity}
-      })
-      toast.success('Prodotto aggiunto al carrello')
-  }
+    const existItem = cartItems.find((x) => x._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    if (product.disponibilita < quantity) {
+      alert("Mi dispiace. Il prodotto non è più disponibile");
+      return;
+    }
+    dispatch({
+      type: "CART_ADD_ITEM",
+      payload: { ...item, quantity },
+    });
+    toast.success("Prodotto aggiunto al carrello");
+  };
 
-  const priceTaxed = calcPriceTaxed(product.prezzo)
+  const priceTaxed = calcPriceTaxed(product.prezzo);
 
   return (
-    <Link to={`/product/${product.slug}`} style={{ textDecoration: 'none' }}>
+    <Link to={`/product/${product.slug}`} style={{ textDecoration: "none" }}>
       <Card className="h-100">
         <Card.Img
           src={product.immagine}
@@ -53,12 +54,14 @@ function ProductItem({ product }: { product: Product }) {
             <Button
               onClick={(e) => {
                 e.preventDefault(); // Evita che il click sul bottone segua il link
+                e.stopPropagation(); // Impedisci la propagazione dell'evento
                 addToCartHandler(convertProductToCartItem(product));
               }}
             >
               Aggiungi al Carrello
             </Button>
           )}
+          <ProductModal name="Modifica" product={product} />
         </Card.Body>
       </Card>
     </Link>

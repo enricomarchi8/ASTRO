@@ -47,7 +47,7 @@ orderRouter.post(
                 totalPrice: req.body.totalPrice,
                 user: req.user._id,
             })
-            res.status(201).json({ message: 'Ordine non trovato', order: createdOrder })
+            res.status(201).json({ message: 'Ordine creato con successo', order: createdOrder })
         }
     })
 )
@@ -71,7 +71,7 @@ orderRouter.put(
 
             res.send({ order: updatedOrder, message:'Ordine pagato correttamente' })
         } else {
-            res.status(404).json({ message: 'Ordine non trovato.' })
+            res.status(404).json({ message: 'Ordine non trovato' })
         }
     })
 )
