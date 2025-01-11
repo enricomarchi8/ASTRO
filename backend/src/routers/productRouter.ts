@@ -80,3 +80,21 @@ productRouter.put(
         }
     })
 )
+
+productRouter.delete(
+    '/:id',
+    isAuth,
+    asyncHandler(async (req: Request, res: Response) => {
+        if (req.user.isAdmin) {
+            const product = await ProductModel.findById(req.params.id)
+            if (product) {
+                await product.deleteOne()
+                res.json({ message: 'Prodotto eliminato con successo' })
+            } else {
+                res.status(404).json({ message: 'Prodotto non trovato' })
+            }
+        } else {
+            res.status(401).json({ message: 'Utente non autorizzato' })
+        }
+    })
+)

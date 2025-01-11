@@ -1,4 +1,4 @@
-import { Button, Card, Row } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Product } from "../types/Product";
 import Rating from "./Rating";
@@ -7,7 +7,6 @@ import { useContext } from "react";
 import { CartItem } from "../types/Cart";
 import { calcPriceTaxed, convertProductToCartItem } from "../utils";
 import { toast } from "react-toastify";
-import ProductModal from "./ProductModal";
 
 function ProductItem({ product }: { product: Product }) {
   const { state, dispatch } = useContext(Store);
@@ -54,14 +53,12 @@ function ProductItem({ product }: { product: Product }) {
             <Button
               onClick={(e) => {
                 e.preventDefault(); // Evita che il click sul bottone segua il link
-                e.stopPropagation(); // Impedisci la propagazione dell'evento
                 addToCartHandler(convertProductToCartItem(product));
               }}
             >
               Aggiungi al Carrello
             </Button>
           )}
-          <ProductModal name="Modifica" product={product} />
         </Card.Body>
       </Card>
     </Link>

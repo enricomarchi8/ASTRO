@@ -7,9 +7,23 @@ import { useGetProductsQuery } from "../hooks/productHooks";
 import { getError } from "../utils";
 import { ApiError } from "../types/ApiError";
 import ProductModal from "../components/ProductModal";
+import { useEffect, useState } from "react";
 
 export default function Shop() {
   const { data: products, isLoading, error } = useGetProductsQuery();
+
+  const [userInfoFromStorage, setUserInfoFromStorage] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const storedUserInfo = localStorage.getItem("userInfo");
+    if (storedUserInfo) {
+      const userInfo = JSON.parse(storedUserInfo);
+      setUserInfoFromStorage(userInfo);
+      setIsAdmin(userInfo.isAdmin); // Read isAdmin from userInfo
+    }
+  }, []);
+  
   return isLoading ? (
     <LoadingBox />
   ) : error ? (
@@ -26,11 +40,13 @@ export default function Shop() {
         <strong>Che lo spazio sia con te</strong>
       </h1>
 
-      <Row>
-        <Col className="d-flex justify-content-end">
-          <ProductModal name="Nuovo" />
-        </Col>
-      </Row>
+      {isAdmin && (
+        <Row>
+          <Col className="d-flex justify-content-end">
+            <ProductModal name="Nuovo prodotto" />
+          </Col>
+        </Row>
+      )}
 
       {products!.map((product) => (
         <Col key={product.slug} sm={6} md={4} lg={3} className="mt-3">

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -6,7 +7,10 @@ import { Product } from "../types/Product";
 import { toast } from "react-toastify";
 import { getError } from "../utils";
 import { ApiError } from "../types/ApiError";
-import { useCreateProductMutation } from "../hooks/productHooks";
+import {
+  useCreateProductMutation,
+  useUpdateProductMutation,
+} from "../hooks/productHooks";
 
 interface ProductModalProps {
   name: string;
@@ -14,6 +18,8 @@ interface ProductModalProps {
 }
 
 export default function ProductModal({ name, product }: ProductModalProps) {
+  const navigate = useNavigate();
+
   const [show, setShow] = useState(false);
 
   const [nome, setNome] = useState<string>(product?.nome || "");
@@ -30,27 +36,47 @@ export default function ProductModal({ name, product }: ProductModalProps) {
   );
 
   const { mutateAsync: createProduct } = useCreateProductMutation();
+  const { mutateAsync: updateProduct } = useUpdateProductMutation();
 
   const closeHandler = () => setShow(false);
   const showHandler = () => {
     setShow(true);
   };
 
-  const submitHandler = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
+  const submitHandler = () => {
     try {
-      await createProduct({
-        nome,
-        slug,
-        immagine,
-        marca,
-        categoria,
-        descrizione,
-        prezzo,
-        disponibilita,
-        valutazione: 0,
-        numRecensioni: 0,
-      });
+      if (product) {
+        updateProduct({
+          _id: product._id,
+          nome,
+          slug: product.slug,
+          immagine,
+          marca,
+          categoria,
+          descrizione,
+          prezzo,
+          disponibilita,
+          valutazione: product.valutazione,
+          numRecensioni: product.numRecensioni,
+        });
+        navigate(0);
+        toast.success("Prodotto aggiornato con successo");
+      } else {
+        createProduct({
+          nome,
+          slug,
+          immagine,
+          marca,
+          categoria,
+          descrizione,
+          prezzo,
+          disponibilita,
+          valutazione: 0,
+          numRecensioni: 0,
+        });
+        navigate(0);
+        toast.success("Prodotto aggiunto con successo");
+      }
     } catch (err) {
       toast.error(getError(err as ApiError));
     }
@@ -58,14 +84,7 @@ export default function ProductModal({ name, product }: ProductModalProps) {
 
   return (
     <>
-      <Button
-        variant="primary"
-        onClick={(e) => {
-          e.preventDefault(); // Evita che il click sul bottone segua il link
-          e.stopPropagation(); // Impedisci la propagazione dell'evento
-          showHandler();
-        }}
-      >
+      <Button variant="dark" onClick={showHandler}>
         {name}
       </Button>
 
@@ -83,18 +102,22 @@ export default function ProductModal({ name, product }: ProductModalProps) {
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
                 autoFocus
+                required
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="slug">
-              <Form.Label>Slug</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="nome-prodotto-url"
-                value={slug}
-                onChange={(e) => setSlug(e.target.value)}
-              />
-            </Form.Group>
+            {!product && (
+              <Form.Group className="mb-3" controlId="slug">
+                <Form.Label>Slug</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="nome-prodotto-url"
+                  value={slug}
+                  onChange={(e) => setSlug(e.target.value)}
+                  required
+                />
+              </Form.Group>
+            )}
 
             <Form.Group className="mb-3" controlId="immagine">
               <Form.Label>URL Immagine</Form.Label>
@@ -103,6 +126,7 @@ export default function ProductModal({ name, product }: ProductModalProps) {
                 placeholder="http://esempio.com/immagine.jpg"
                 value={immagine}
                 onChange={(e) => setImmagine(e.target.value)}
+                required
               />
             </Form.Group>
 
@@ -113,6 +137,7 @@ export default function ProductModal({ name, product }: ProductModalProps) {
                 placeholder="Inserisci marca"
                 value={marca}
                 onChange={(e) => setMarca(e.target.value)}
+                required
               />
             </Form.Group>
 
@@ -123,6 +148,7 @@ export default function ProductModal({ name, product }: ProductModalProps) {
                 placeholder="Inserisci categoria"
                 value={categoria}
                 onChange={(e) => setCategoria(e.target.value)}
+                required
               />
             </Form.Group>
 
@@ -134,6 +160,7 @@ export default function ProductModal({ name, product }: ProductModalProps) {
                 placeholder="Inserisci descrizione"
                 value={descrizione}
                 onChange={(e) => setDescrizione(e.target.value)}
+                required
               />
             </Form.Group>
 
@@ -145,6 +172,7 @@ export default function ProductModal({ name, product }: ProductModalProps) {
                 step="0.01"
                 value={prezzo}
                 onChange={(e) => setPrezzo(parseFloat(e.target.value))}
+                required
               />
             </Form.Group>
 
@@ -155,6 +183,7 @@ export default function ProductModal({ name, product }: ProductModalProps) {
                 placeholder="0"
                 value={disponibilita}
                 onChange={(e) => setDisponibilita(parseInt(e.target.value, 10))}
+                required
               />
             </Form.Group>
           </Modal.Body>
@@ -162,7 +191,7 @@ export default function ProductModal({ name, product }: ProductModalProps) {
             <Button variant="secondary" onClick={closeHandler}>
               Annulla
             </Button>
-            <Button variant="primary" onClick={closeHandler} type="submit">
+            <Button variant="primary" type="submit">
               Salva
             </Button>
           </Modal.Footer>
