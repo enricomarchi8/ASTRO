@@ -12,15 +12,14 @@
 
 .full-width {
   max-width: none;
-  max-height: none;
   padding: 0;
   width: 100vw;
-  height: 48vw;
   position: relative;
   left: 50%;
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+  margin-bottom: 2em;
 }
 
 /*
@@ -278,8 +277,8 @@ a.header-link:hover,
 }
 
 .home-title {
-  animation: fadeIn 8s;
-  font-size: 800%;
+  animation: fadeIn 12s;
+  font-size: clamp(3rem, 10vw, 8rem);
   position: absolute;
   z-index: 1;
   color: #be2ed6;
@@ -288,6 +287,8 @@ a.header-link:hover,
   transform: translate(-50%, -35%);
   text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
                1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+  width: 100%;
+  text-align: center;
 }
 
 .home-subtitle {
@@ -295,9 +296,37 @@ a.header-link:hover,
   position: absolute;
   z-index: 1;
   color: white;
-  top: 58%;
-  left: 55%;
-  transform: translate(-55%, -58%);
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 800px;
+  text-align: center;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  line-height: 1.4;
+  padding: 0 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .home-title {
+    top: 30%;
+  }
+  
+  .home-subtitle {
+    top: 65%;
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .home-title {
+    top: 25%;
+  }
+  
+  .home-subtitle {
+    top: 60%;
+    font-size: clamp(0.875rem, 4vw, 1rem);
+  }
 }
 
 .card-checkout {

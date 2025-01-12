@@ -23,7 +23,7 @@ export default function Shop() {
       setIsAdmin(userInfo.isAdmin); // Read isAdmin from userInfo
     }
   }, []);
-  
+
   return isLoading ? (
     <LoadingBox />
   ) : error ? (
@@ -36,7 +36,7 @@ export default function Shop() {
         <title>ASTRO - Shop</title>
       </Helmet>
 
-      <h1 className="shop-title mt-3">
+      <h1 className="shop-title mt-3" style={{ color: "#be2ed6" }}>
         <strong>Che lo spazio sia con te</strong>
       </h1>
 

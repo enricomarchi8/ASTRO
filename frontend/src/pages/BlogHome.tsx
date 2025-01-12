@@ -10,18 +10,6 @@ import { format } from "date-fns";
 import { it } from "date-fns/locale";
 
 export default function BlogHome() {
-  /*
-    const { id } = useParams<{ id:string }>();
-        const [blog, setBlog] = useState<Blog | null>(null);
-
-        useEffect(() => {
-            axios.get(`/api/blogs/${id}`).then((response) => {
-                setBlog(response.data);
-            });
-        }, [id]);
-
-        if (!blog) return <div>Caricamento...</div>;
-    */
   const { data: posts, isLoading, error } = useGetPostsQuery();
 
   return isLoading ? (
@@ -33,11 +21,13 @@ export default function BlogHome() {
   ) : !posts ? (
     <MessageBox variant="danger">Blogs Not Found</MessageBox>
   ) : (
-    <div className="home">
+    <div className="home full-width">
       <Helmet>
         <title>ASTRO-Blog</title>
       </Helmet>
-      <h1>Blog</h1>
+      <h1 style={{ color: "#be2ed6" }}>
+        <strong>Alla scoperta dello spazio</strong>
+      </h1>
       <div className="blog-grid">
         {posts!.map((post) => (
           <Link to={`/blog/${post._id}`} className="blog-card">
