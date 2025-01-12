@@ -6,6 +6,8 @@ import { getError } from '../utils';
 import { ApiError } from '../types/ApiError';
 import LoadingBox from '../components/LoadingBox';
 import { Card } from 'react-bootstrap';
+import { format } from 'date-fns';
+import { it } from 'date-fns/locale';
 
 export default function BlogPost() {
   /*
@@ -42,7 +44,8 @@ export default function BlogPost() {
                 src={post.author.avatar} 
                 alt={post.author.name} 
                 className="blog-post-author-image"/>
-              <span>By {post.author.name} - {post.date}</span>
+              <span>Scritto da {post.author.name} · <span>{format(new Date(post.date), "EEEE d LLLL yyyy", {locale: it,})}</span>
+              </span>
            </div>
           <Card className="blog-post-content">
               <Card.Body>

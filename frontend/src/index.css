@@ -328,8 +328,17 @@ a.header-link:hover,
   object-fit: contain; 
 }
 
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* L'intera altezza della finestra */
+}
+
+.flex-grow-1 {
+  flex: 1; /* Si espande per occupare tutto lo spazio disponibile */
+}
+
 footer {
-  position: flex;
   bottom: 0;
   width: 100%;
   padding: 20px;

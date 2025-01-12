@@ -7,17 +7,17 @@ import "react-toastify/ReactToastify.css";
 
 function App() {
   return (
-    <div className="flex-cloumn vh-100">
+    <div className="app-container d-flex-cloumn vh-100">
       <ToastContainer position="bottom-center" limit={1} />
       <React.Fragment>
         <Navbar />
       </React.Fragment>
-      <main>
+      <main className="flex-grow-1">
         <Container>
           <Outlet />
         </Container>
       </main>
-      <footer>
+      <footer className="footer">
         <div className="text-center">Copyright © 2024 ASTRO, Inc.</div>
       </footer>
     </div>
