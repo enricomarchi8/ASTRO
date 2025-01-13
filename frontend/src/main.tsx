@@ -60,7 +60,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <HelmetProvider>
           <QueryClientProvider client={queryClient}>
             <RouterProvider router={router} />
-            <ReactQueryDevtools initialIsOpen={false} />
+            {/*<ReactQueryDevtools initialIsOpen={false} /> */}
           </QueryClientProvider>
         </HelmetProvider>
         </PayPalScriptProvider>  

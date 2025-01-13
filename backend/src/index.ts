@@ -8,6 +8,7 @@ import { userRouter } from './routers/userRouter'
 import { orderRouter } from './routers/orderRouter'
 import { keyRouter } from './routers/keyRouter'
 import { blogRouter } from './routers/blogRouter'
+import { errorHandler, notFoundHandler } from './utils'
 
 dotenv.config()
 
@@ -40,6 +41,10 @@ app.use('/api/users', userRouter)
 app.use('/api/orders', orderRouter)
 app.use('/api/keys', keyRouter)
 app.use('/api/blogs', blogRouter)
+
+app.use(notFoundHandler);
+
+app.use(errorHandler);
 
 const PORT = 4000
 app.listen(PORT, () => {

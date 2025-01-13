@@ -45,8 +45,22 @@ nav a {
 	text-decoration: none;
 }
 
-nav a:hover {
-	color: var(--secondaryColor);
+.nav-link {
+  padding: 10px 15px;
+  display: inline-block;
+}
+
+nav a:hover,
+.navbar .nav-link:hover{
+  background-color: #333;
+  border-radius: 5%;
+}
+
+.dropdown-item:hover{
+  background-color: #333;
+  color: var(--textColor); 
+  border-radius: 4px;
+  margin: 0;
 }
 
 header .nav-btn {
@@ -172,6 +186,7 @@ a.header-link:hover,
   background-color: white;
 }
 .header .dropdown-item a:hover {
+  margin: 0;
   border: 1px rgb(33, 37, 41) solid;
 }
 

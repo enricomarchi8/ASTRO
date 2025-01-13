@@ -38,3 +38,24 @@ export const isAuth = (req: Request, res: Response, next: NextFunction) => {
         res.status(401).json({ message: 'No Token' })
     }
 }
+
+export const errorHandler = (
+    err: any,
+    _req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+    res.status(statusCode);
+    res.json({
+      message: err.message || 'Errore del server',
+      stack: process.env.NODE_ENV === 'production' ? null : err.stack,
+    });
+  };
+  
+  // Middleware per gestire le route non trovate
+  export const notFoundHandler = (req: Request, res: Response, next: NextFunction) => {
+    const error = new Error(`Route non trovata - ${req.originalUrl}`);
+    res.status(404);
+    next(error);
+  };
