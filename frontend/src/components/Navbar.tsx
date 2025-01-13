@@ -35,7 +35,7 @@ function Navbar() {
 
   const navRef = useRef();
 
-  const showNavbar = () => {
+  const navShowHide = () => {
     navRef.current.classList.toggle("responsive_nav");
   };
 
@@ -49,13 +49,13 @@ function Navbar() {
         />
       </LinkContainer>
       <nav ref={navRef}>
-        <LinkContainer to="/blog">
+        <LinkContainer to="/blog" onClick={navShowHide}>
           <Nav.Link>Blog</Nav.Link>
         </LinkContainer>
-        <LinkContainer to="/shop">
+        <LinkContainer to="/shop" onClick={navShowHide}>
           <Nav.Link>Shop</Nav.Link>
         </LinkContainer>
-        <LinkContainer to="/cart" className="cart">
+        <LinkContainer to="/cart" className="cart" onClick={navShowHide}>
           <Nav.Link>
             <Bag />
             {cart.cartItems.length > 0 && (
@@ -67,7 +67,7 @@ function Navbar() {
         </LinkContainer>
         {userInfo ? (
           <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
-            <LinkContainer to="/orderhistory">
+            <LinkContainer to="/orderhistory" onClick={navShowHide}>
               <NavDropdown.Item>Storico Ordini</NavDropdown.Item>
             </LinkContainer>
             <Link
@@ -79,18 +79,18 @@ function Navbar() {
             </Link>
           </NavDropdown>
         ) : (
-          <Link className="nav-link" to="/signin">
+          <Link className="nav-link" to="/signin" onClick={navShowHide}>
             <a href="/signin" className="nav-link">
               {" "}
               <PersonCircle />{" "}
             </a>
           </Link>
         )}
-        <button className="nav-btn nav-close-btn" onClick={showNavbar}>
+        <button className="nav-btn nav-close-btn" onClick={navShowHide}>
           <FaTimes />
         </button>
       </nav>
-      <button className="nav-btn" onClick={showNavbar}>
+      <button className="nav-btn" onClick={navShowHide}>
         <FaBars />
       </button>
     </header>
