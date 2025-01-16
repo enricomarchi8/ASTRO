@@ -31,7 +31,7 @@ export default function Shop() {
       {getError(error as unknown as ApiError)}
     </MessageBox>
   ) : (
-    <Row>
+    <Row className="text-center">
       <Helmet>
         <title>ASTRO - Shop</title>
       </Helmet>
@@ -49,7 +49,7 @@ export default function Shop() {
       )}
 
       {products!.map((product) => (
-        <Col key={product.slug} sm={6} md={4} lg={3} className="mt-3">
+        <Col key={product.slug} xs={6} sm={6} md={4} lg={3} className="mt-3">
           <ProductItem product={product} />
         </Col>
       ))}

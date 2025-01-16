@@ -54,7 +54,7 @@ export default function Signup() {
     return (
         <Container className="small-container">
             <Helmet>
-                <title>ASTRO-Registrati</title>
+                <title>ASTRO - Registrati</title>
             </Helmet>
             <h1 className="my-3">Registrati</h1>
             <Form onSubmit={submitHandler}>

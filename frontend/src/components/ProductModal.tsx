@@ -59,8 +59,8 @@ export default function ProductModal({ name, product }: ProductModalProps) {
           valutazione: product.valutazione,
           numRecensioni: product.numRecensioni,
         });
-        navigate(0);
         toast.success("Prodotto aggiornato con successo");
+        navigate(0);
       } else {
         createProduct({
           nome,
@@ -74,8 +74,8 @@ export default function ProductModal({ name, product }: ProductModalProps) {
           valutazione: 0,
           numRecensioni: 0,
         });
+        toast.success("Prodotto creato con successo");
         navigate(0);
-        toast.success("Prodotto aggiunto con successo");
       }
     } catch (err) {
       toast.error(getError(err as ApiError));

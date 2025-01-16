@@ -16,6 +16,7 @@ import { HomeBackground } from "../components/HomeBackground";
 import { format } from "date-fns";
 import { it } from "date-fns/locale";
 import ProductItem from "../components/ProductItem";
+import { Helmet } from "react-helmet-async";
 
 export default function Home() {
   const {
@@ -43,6 +44,9 @@ export default function Home() {
 
   return (
     <div className="page-container">
+      <Helmet>
+        <title>ASTRO</title>
+      </Helmet>
       <div className="hero-section full-width">
         <h1 className="home-title mt-3">
           <strong>ASTRO</strong>
@@ -83,8 +87,9 @@ export default function Home() {
                   {randomProducts.map((product) => (
                     <Col
                       key={product.slug}
+                      xs={6}
                       sm={6}
-                      md={4}
+                      md={6}
                       lg={3}
                       className="mt-3"
                     >
@@ -94,7 +99,7 @@ export default function Home() {
                 </Row>
               )}
               <div>
-                <Button href="/shop" variant="light" className="mt-3">
+                <Button href="/shop" variant="light" className="mt-4">
                   Scopri di più
                 </Button>
               </div>
@@ -114,7 +119,7 @@ export default function Home() {
               {getError(errorPosts as unknown as ApiError)}
             </MessageBox>
           ) : (
-            <div className="blog-grid">
+            <div className="blog-grid ms-3 me-3">
               {randomArticles.map((post) => (
                 <Link
                   to={`/blog/${post._id}`}
@@ -135,7 +140,7 @@ export default function Home() {
             </div>
           )}
           <div>
-            <Button href="/blog" variant="dark" className="mt-3">
+            <Button href="/blog" variant="dark" className="mt-4">
               Scopri di più
             </Button>
           </div>

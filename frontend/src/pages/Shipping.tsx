@@ -54,7 +54,7 @@ export default function Shipping() {
     return (
         <div>
             <Helmet>
-                <title>ASTRO-Spedizione</title>
+                <title>ASTRO - Spedizione</title>
             </Helmet>
             <CheckoutSteps step1 step2></CheckoutSteps>
             <div className="container small-container">

@@ -23,12 +23,12 @@ export default function BlogHome() {
   ) : (
     <div className="home full-width">
       <Helmet>
-        <title>ASTRO-Blog</title>
+        <title>ASTRO - Blog</title>
       </Helmet>
       <h1 style={{ color: "#be2ed6" }}>
         <strong>Alla scoperta dello spazio</strong>
       </h1>
-      <div className="blog-grid">
+      <div className="blog-grid ms-3 me-3">
         {posts!.map((post) => (
           <Link to={`/blog/${post._id}`} className="blog-card">
             <img src={post.imageUrl} alt={post.title} />

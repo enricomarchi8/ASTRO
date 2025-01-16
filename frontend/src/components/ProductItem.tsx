@@ -39,12 +39,15 @@ function ProductItem({ product }: { product: Product }) {
           alt={product.nome}
         />
         <Card.Body>
-          <Card.Title>{product.nome}</Card.Title>
+          <Card.Title className="truncated-text">{product.nome}</Card.Title>
           <Rating
             rating={product.valutazione}
             numReviews={product.numRecensioni}
           />
-          <Card.Text>€{priceTaxed}</Card.Text>
+          <br></br>
+          <Card.Text>
+            <strong>{priceTaxed} €</strong>
+          </Card.Text>
           {product.disponibilita === 0 ? (
             <Button variant="light" disabled>
               Non disponibile

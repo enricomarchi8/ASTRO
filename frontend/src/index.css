@@ -331,6 +331,10 @@ a.header-link:hover,
     top: 65%;
     width: 90%;
   }
+
+  .card-img-top {
+    height: 25vw;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -380,6 +384,12 @@ a.header-link:hover,
 
 .flex-grow-1 {
   flex: 1; /* Si espande per occupare tutto lo spazio disponibile */
+}
+
+.truncated-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 footer {

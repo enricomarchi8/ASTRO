@@ -8,7 +8,7 @@ import "react-toastify/ReactToastify.css";
 function App() {
   return (
     <div className="app-container d-flex-cloumn vh-100">
-      <ToastContainer position="bottom-center" limit={1} />
+      <ToastContainer position="bottom-right" autoClose={2500} />
       <React.Fragment>
         <Navbar />
       </React.Fragment>
@@ -18,7 +18,7 @@ function App() {
         </Container>
       </main>
       <footer className="footer">
-        <div className="text-center">Copyright © 2024 ASTRO, Inc.</div>
+        <div className="text-center">Copyright © 2025 ASTRO, Inc.</div>
       </footer>
     </div>
   );
