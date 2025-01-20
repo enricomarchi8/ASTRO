@@ -17,7 +17,7 @@ const initialState: AppState = {
     mode: localStorage.getItem('mode')
         ? localStorage.getItem('mode')!
         : window.matchMedia &&
-        window.matchMedia('(prefers-color-scheme: dark').matches //controlla il tema del browser per renderlo uguale 
+        window.matchMedia('(prefers-color-scheme: dark').matches
         ? 'dark'
         : 'light', 
     cart: {

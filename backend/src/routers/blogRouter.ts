@@ -10,7 +10,7 @@ blogRouter.get(
       const posts = await BlogModel.find()
       res.json(posts)
   })
-)  //necessita dell'installazione di express-async-handler
+)
 
 blogRouter.get(
   '/:id',

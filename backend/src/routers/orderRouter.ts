@@ -14,7 +14,7 @@ orderRouter.get(
     })
 )
 
-orderRouter.get( // /api/orders/:id
+orderRouter.get(
     '/:id',
     isAuth,
     asyncHandler(async (req: Request, res: Response) => {
@@ -29,7 +29,7 @@ orderRouter.get( // /api/orders/:id
 
 orderRouter.post(
     '/',
-    isAuth,  //solo gli utenti verificati possono accedere a questa api quindi necessita di un middleware prima di chiamarla a rispondere alla richiesta
+    isAuth,
     asyncHandler(async (req: Request, res: Response) => {
         if (req.body.orderItems.length === 0) {
             res.status(400).json({ message: 'Il carrello è vuoto.' })

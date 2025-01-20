@@ -11,8 +11,6 @@ import { useState, useEffect } from "react";
 import "../styles/Blog.css";
 import { Blog } from "../types/Blog";
 import { Product } from "../types/Product";
-import { Canvas } from "@react-three/fiber";
-import { HomeBackground } from "../components/HomeBackground";
 import { format } from "date-fns";
 import { it } from "date-fns/locale";
 import ProductItem from "../components/ProductItem";
@@ -57,19 +55,21 @@ export default function Home() {
           generica di qualsiasi oggetto luminoso sulla sfera celeste: stelle,
           Sole, pianeti, comete, ecc.
         </h2>
-        <Canvas
-          camera={{
-            fov: 100,
-            near: 0.1,
-            far: 200,
+        <video
+          src="/background.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            width: "100%",
+            height: "auto",
+            objectFit: "cover",
           }}
-        >
-          <HomeBackground />
-        </Canvas>
+        />
       </div>
 
       <Container className="content-section text-center">
-        {/* Sezione prodotti */}
         <section className="products-section">
           <Card className="h-100" style={{ backgroundColor: "#be2ed6" }}>
             <Card.Body>
@@ -107,7 +107,6 @@ export default function Home() {
           </Card>
         </section>
 
-        {/* Sezione articoli */}
         <section className="blog-section full-width">
           <h2 style={{ color: "#be2ed6" }}>
             <strong>Alla scoperta dello spazio</strong>

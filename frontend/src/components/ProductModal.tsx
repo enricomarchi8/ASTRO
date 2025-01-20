@@ -65,7 +65,7 @@ export default function ProductModal({ name, product }: ProductModalProps) {
         createProduct({
           nome,
           slug,
-          immagine,
+          immagine: "../images/T-shirt_U_ASTRO.jpeg",
           marca,
           categoria,
           descrizione,
@@ -119,16 +119,18 @@ export default function ProductModal({ name, product }: ProductModalProps) {
               </Form.Group>
             )}
 
-            <Form.Group className="mb-3" controlId="immagine">
-              <Form.Label>URL Immagine</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="http://esempio.com/immagine.jpg"
-                value={immagine}
-                onChange={(e) => setImmagine(e.target.value)}
-                required
-              />
-            </Form.Group>
+            {product && (
+              <Form.Group className="mb-3" controlId="immagine">
+                <Form.Label>URL Immagine</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="../images/nome_immagine.jpeg"
+                  value={immagine}
+                  onChange={(e) => setImmagine(e.target.value)}
+                  required
+                />
+              </Form.Group>
+            )}
 
             <Form.Group className="mb-3" controlId="marca">
               <Form.Label>Marca</Form.Label>

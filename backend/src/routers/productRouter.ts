@@ -11,7 +11,7 @@ productRouter.get(
         const products = await ProductModel.find()
         res.json(products)
     })
-)  //necessita dell'installazione di express-async-handler
+)
 
 productRouter.get(
     '/slug/:slug',

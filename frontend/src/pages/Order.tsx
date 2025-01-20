@@ -1,5 +1,4 @@
-import { useContext, useEffect } from "react";
-import { Store } from "../Store";
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import {
   useGetOrderDetailsQuery,
@@ -14,15 +13,11 @@ import { Helmet } from "react-helmet-async";
 import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 import {
-  PayPalButtons,
-  PayPalButtonsComponentProps,
   SCRIPT_LOADING_STATE,
   usePayPalScriptReducer,
 } from "@paypal/react-paypal-js";
 
 export default function Order() {
-  const { state } = useContext(Store);
-  const { userInfo } = state;
 
   const params = useParams();
   const { id: orderId } = params;
@@ -64,36 +59,7 @@ export default function Order() {
       };
       loadPaypalScript();
     }
-  }, [paypalConfig]);
-
-  const paypalbuttonTransactionProps: PayPalButtonsComponentProps = {
-    style: { layout: "vertical" },
-    async createOrder(_data, actions) {
-      const orderID = await actions.order.create({
-        purchase_units: [
-          {
-            amount: {
-              value: order!.totalPrice.toString(),
-            },
-          },
-        ],
-      });
-      return orderID;
-    },
-    async onApprove(_data, actions) {
-      const details = await actions.order!.capture();
-      try {
-        await payOrder({ orderId: orderId!, ...details });
-        refetch();
-        toast.success("Ordine pagato");
-      } catch (err) {
-        toast.error(getError(err as ApiError));
-      }
-    },
-    onError: (err) => {
-      toast.error(getError(err as ApiError));
-    },
-  };
+  }, [paypalConfig, paypalDispatch]);
 
   return isLoading ? (
     <LoadingBox></LoadingBox>
@@ -249,11 +215,6 @@ export default function Order() {
                             alt="Apple-Pay-Logo"
                           ></img>
                         </Button>
-                        {/*
-                                                <PayPalButtons
-                                                    {...paypalbuttonTransactionProps}
-                                                ></PayPalButtons>
-                                                */}
                       </div>
                     )}
                     {loadingPay && <LoadingBox></LoadingBox>}

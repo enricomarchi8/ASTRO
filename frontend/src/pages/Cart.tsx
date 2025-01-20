@@ -62,12 +62,12 @@ export default function Cart() {
             <ListGroup>
               {cartItems.map((item: CartItem) => (
                 <ListGroupItem key={item._id}>
-                  <Row className="row-cart" /*align-items-center*/>
+                  <Row className="row-cart">
                     <Col lg={4} className="d-flex align-items-center">
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="img-fluid rounded thumbnail me-3" //img-fluid rounded img-thumbnail
+                        className="img-fluid rounded thumbnail me-3"
                       ></img>{" "}
                       <Link
                         to={`/product/${item.slug}`}

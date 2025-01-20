@@ -16,7 +16,7 @@ export default function PlaceOrder() {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
 
-  const round2 = (num: number) => Math.round(num * 100 + Number.EPSILON) / 100; //123.2345 => 123.23
+  const round2 = (num: number) => Math.round(num * 100 + Number.EPSILON) / 100;
 
   cart.itemsPrice = round2(
     cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
@@ -60,7 +60,7 @@ export default function PlaceOrder() {
       </Helmet>
       <h1 className="my-3">Riepilogo Ordine</h1>
       <Row>
-        <Col md={8}>
+        <Col xl={9}>
           <Card className="card-checkout">
             <Card.Body>
               <Card.Title>Spedizione</Card.Title>
@@ -71,15 +71,6 @@ export default function PlaceOrder() {
                 {cart.shippingAddress.country}
               </Card.Text>
               <Link to="/shipping">Modifica</Link>
-            </Card.Body>
-          </Card>
-
-          <Card className="card-checkout">
-            <Card.Body>
-              <Card.Title>Pagamento</Card.Title>
-              <Card.Text>
-                <strong>Status pagamento:</strong>
-              </Card.Text>
             </Card.Body>
           </Card>
 
@@ -134,7 +125,7 @@ export default function PlaceOrder() {
             </Card.Body>
           </Card>
         </Col>
-        <Col md={4}>
+        <Col lg={3}>
           <Card className="card-report">
             <Card.Body>
               <Card.Title>Resoconto Ordine</Card.Title>

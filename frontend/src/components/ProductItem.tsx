@@ -1,38 +1,27 @@
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Product } from "../types/Product";
 import Rating from "./Rating";
-import { Store } from "../Store";
-import { useContext } from "react";
-import { CartItem } from "../types/Cart";
-import { calcPriceTaxed, convertProductToCartItem } from "../utils";
-import { toast } from "react-toastify";
+import { calcPriceTaxed } from "../utils";
+import { useState } from "react";
 
 function ProductItem({ product }: { product: Product }) {
-  const { state, dispatch } = useContext(Store);
-  const {
-    cart: { cartItems },
-  } = state;
-
-  const addToCartHandler = (item: CartItem) => {
-    const existItem = cartItems.find((x) => x._id === product._id);
-    const quantity = existItem ? existItem.quantity + 1 : 1;
-    if (product.disponibilita < quantity) {
-      alert("Mi dispiace. Il prodotto non è più disponibile");
-      return;
-    }
-    dispatch({
-      type: "CART_ADD_ITEM",
-      payload: { ...item, quantity },
-    });
-    toast.success("Prodotto aggiunto al carrello");
-  };
-
   const priceTaxed = calcPriceTaxed(product.prezzo);
+
+  const [isHovered, setIsHovered] = useState(false);
+  const hoverStyle = {
+    transform: isHovered ? "scale(1.05)" : "scale(1)",
+    transition: "transform 0.2s ease-in-out",
+  };
 
   return (
     <Link to={`/product/${product.slug}`} style={{ textDecoration: "none" }}>
-      <Card className="h-100">
+      <Card
+        className="h-100"
+        style={hoverStyle}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <Card.Img
           src={product.immagine}
           className="card-img-top"
@@ -48,20 +37,6 @@ function ProductItem({ product }: { product: Product }) {
           <Card.Text>
             <strong>{priceTaxed} €</strong>
           </Card.Text>
-          {product.disponibilita === 0 ? (
-            <Button variant="light" disabled>
-              Non disponibile
-            </Button>
-          ) : (
-            <Button
-              onClick={(e) => {
-                e.preventDefault(); // Evita che il click sul bottone segua il link
-                addToCartHandler(convertProductToCartItem(product));
-              }}
-            >
-              Aggiungi al Carrello
-            </Button>
-          )}
         </Card.Body>
       </Card>
     </Link>

@@ -21,7 +21,7 @@ export default function BlogHome() {
   ) : !posts ? (
     <MessageBox variant="danger">Blogs Not Found</MessageBox>
   ) : (
-    <div className="home full-width">
+    <div className="home mb-3">
       <Helmet>
         <title>ASTRO - Blog</title>
       </Helmet>

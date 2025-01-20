@@ -11,16 +11,13 @@ import { useEffect, useState } from "react";
 
 export default function Shop() {
   const { data: products, isLoading, error } = useGetProductsQuery();
-
-  const [userInfoFromStorage, setUserInfoFromStorage] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const storedUserInfo = localStorage.getItem("userInfo");
     if (storedUserInfo) {
       const userInfo = JSON.parse(storedUserInfo);
-      setUserInfoFromStorage(userInfo);
-      setIsAdmin(userInfo.isAdmin); // Read isAdmin from userInfo
+      setIsAdmin(userInfo.isAdmin);
     }
   }, []);
 
@@ -31,7 +28,7 @@ export default function Shop() {
       {getError(error as unknown as ApiError)}
     </MessageBox>
   ) : (
-    <Row className="text-center">
+    <Row className="text-center mb-3">
       <Helmet>
         <title>ASTRO - Shop</title>
       </Helmet>

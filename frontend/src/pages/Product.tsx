@@ -46,12 +46,12 @@ export default function Product() {
 
   const handleSizeSelect = (size: string) => {
     setSelectedSize(size);
-    console.log("Selected size:", size); // per debugging
+    console.log("Selected size:", size);
   };
 
   const handleColorSelect = (color: string) => {
     setSelectedColor(color);
-    console.log("Selected color:", color); // per debugging
+    console.log("Selected color:", color);
   };
 
   const addToCartHandler = () => {
@@ -79,16 +79,14 @@ export default function Product() {
     navigate("/cart");
   };
 
-  const priceTaxed = calcPriceTaxed(product?.prezzo || 0); //gestiamo anche il fatto che product possa non essere ancora definito
+  const priceTaxed = calcPriceTaxed(product?.prezzo || 0);
 
-  const [userInfoFromStorage, setUserInfoFromStorage] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const storedUserInfo = localStorage.getItem("userInfo");
     if (storedUserInfo) {
       const userInfo = JSON.parse(storedUserInfo);
-      setUserInfoFromStorage(userInfo);
       setIsAdmin(userInfo.isAdmin);
     }
   }, []);
@@ -100,11 +98,9 @@ export default function Product() {
   const deleteProductHandler = async () => {
     try {
       await deleteProduct(product!._id);
-      toast.dismiss(); // Rimuove eventuali toast esistenti
       toast.success("Prodotto eliminato con successo");
       navigate("/shop");
     } catch (error) {
-      toast.dismiss(); // Rimuove eventuali toast esistenti
       toast.error(getError(error as ApiError));
     }
   };
@@ -123,7 +119,6 @@ export default function Product() {
         <title>ASTRO - {product.nome}</title>
       </Helmet>
       <div className="product-main-column">
-        {/* Carousel Section */}
         <div className="carousel-container">
           <div className="carousel">
             <Carousel>
@@ -152,7 +147,6 @@ export default function Product() {
           </div>
         </div>
 
-        {/* Product Details Section */}
         <div className="product-details-container">
           <div className="product-details">
             <ListGroup className="list-group-container" variant="flush">
@@ -220,7 +214,7 @@ export default function Product() {
               </Dropdown>
             </div>
           </div>
-          {/* Add to Cart Section */}
+
           <div className="add-to-cart-container">
             <Card className="add-to-cart-card">
               <Card.Body>
